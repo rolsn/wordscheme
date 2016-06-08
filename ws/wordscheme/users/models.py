@@ -7,3 +7,6 @@ class Users(models.Model):
     password    = models.CharField(max_length=64)
     reg_date    = models.DateTimeField('Registration Date')
     email       = models.EmailField()
+
+    def __str__(self):
+        return self.username
