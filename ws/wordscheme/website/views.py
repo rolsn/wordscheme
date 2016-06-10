@@ -2,12 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
-
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as _login
-from website.forms import RegistrationForm, LoginForm
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
+from website.forms import RegistrationForm, LoginForm
 
 def index(request):
     return render(request, 'website/index.html', {})
@@ -40,7 +40,7 @@ def new_registration(request):
 
         User.objects.create_user(params['username'], params['email'], params['password'])
 
-        return HttpResponse("User %s created." % params['username'])
+        return HttpResponseRedirect('/main/')
 
     if request.method == "GET":
         return render(request, 'website/register.html', {'form': RegistrationForm().as_ul()})
@@ -64,6 +64,7 @@ def login(request):
     
     if request.method == "GET":
         return render(request, 'website/login.html', {'form': LoginForm().as_ul()})
+
 
 @login_required
 def main(request):
