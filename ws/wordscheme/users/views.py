@@ -4,7 +4,8 @@ from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 
 from django.contrib.auth.models import User
-from users.forms import RegistrationForm
+from django.contrib.auth import authenticate
+from users.forms import RegistrationForm, LoginForm
 
 @require_http_methods(["GET", "POST"])
 def new_registration(request):
@@ -31,10 +32,21 @@ def new_registration(request):
         if emailExists:
             return HttpResponse("Email already registered.")
 
-        #params['reg_date'] = timezone.now()
-        User.objects.create(**params)
+        User.objects.create_user(params['username'], params['email'], params['password'])
 
         return HttpResponse("User %s created." % params['username'])
 
     if request.method == "GET":
         return render(request, 'users/register.html', {'form': RegistrationForm().as_ul()})
+
+@require_http_methods(["POST"])
+def login(request):
+    user = authenticate(request.POST['username'], request.POST['password'])
+
+    if user is not None:
+        if user.is_active:
+            print "user is valid!"
+        else:
+            print "user is an asshole"
+    else:
+        print "username or password WRONG"
