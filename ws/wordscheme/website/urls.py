@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^login/', views.login, name='login'),
     url(r'^main/', views.main, name='main'),
     url(r'^logout/', 'django.contrib.auth.views.logout_then_login'),
+    url(r'^articles/(?P<id>[0-9]+)/$', views.article, name='article'),
 ]

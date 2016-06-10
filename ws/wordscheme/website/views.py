@@ -78,3 +78,7 @@ def main(request):
         "articles"  : latest_articles
         })
 
+def article(request, id):
+    article = Articles.objects.get(id=id)
+
+    return HttpResponse("This will eventually show you article #%s." % id)

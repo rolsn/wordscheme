@@ -8,7 +8,7 @@ This is the WordScheme main interface.</p>
 {% if articles %}
     <p>Here are your five latest articles.</p>
     {% for article in articles %}
-        <li>{{ article.subject }}</li>
+    <li><a href="{% url 'website:articles' article.id %}">{{ article.subject }}</a></li>
     {% endfor %}
 {% else %}
     <p>You haven't written anything yet.</p>
