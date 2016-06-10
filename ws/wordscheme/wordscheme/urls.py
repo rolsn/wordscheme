@@ -22,5 +22,6 @@ import users.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', website.views.index, name='index'),
-    url(r'^register/', users.views.new_registration, name='register')
+    url(r'^register/', users.views.new_registration, name='register'),
+    url(r'^login/', users.views.login, name='login'),
 ]

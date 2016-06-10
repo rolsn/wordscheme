@@ -5,3 +5,8 @@ class RegistrationForm(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password', 'email']
+
+class LoginForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
