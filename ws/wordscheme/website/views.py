@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
 from website.forms import RegistrationForm, LoginForm
+from website.models import Articles
 
 def index(request):
     return render(request, 'website/index.html', {})
@@ -68,4 +69,11 @@ def login(request):
 
 @login_required
 def main(request):
-    return render(request, 'website/main.html', {})
+    username = request.user
+    uid = User.objects.get(username=username).id
+    latest_articles = Articles.objects.filter(user_id=uid).order_by('-date')[:5]
+
+    return render(request, 'website/main.html', {
+        "username"  : username,
+        "articles"  : latest_articles
+        })

@@ -1,5 +1,15 @@
 {% if username %}
-<p>Welcome, {{ username }}. This is the WordScheme main interface.</p>
+    <p>Welcome, {{ username }}. 
 {% else %}
-<p>Welcome. This is the WordScheme main interface.</p>
+    <p>Welcome. 
+{% endif %}
+This is the WordScheme main interface.</p>
+
+{% if articles %}
+    <p>Here are your five latest articles.</p>
+    {% for article in articles %}
+        <li>{{ article.subject }}</li>
+    {% endfor %}
+{% else %}
+    <p>You haven't written anything yet.</p>
 {% endif %}
