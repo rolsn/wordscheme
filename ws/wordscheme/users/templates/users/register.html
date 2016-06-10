@@ -2,15 +2,13 @@
     <title>Join WebScheme</title>
 </head>
 <h2>Create your personal WebScheme account</h2>
+{% if error %}
+{{ error }}
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
-    Username:<br />
-    <input type="text" name="username"><br />
-    Password:<br />
-    <input type="text" name="password"><br />
-    Email:<br />
-    <input type="text" name="email"><br />
-    <br />
+    {{ form }}
     <input type="submit" value="Register">
 </form>
 <p>By clicking on "Register", you are agreeing to the Terms and Conditions and the Privacy Policy.</p>
