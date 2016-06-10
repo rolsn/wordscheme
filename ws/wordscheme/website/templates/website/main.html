@@ -1,1 +1,5 @@
-<p>This is the WordScheme main interface.</p>
+{% if username %}
+<p>Welcome, {{ username }}. This is the WordScheme main interface.</p>
+{% else %}
+<p>Welcome. This is the WordScheme main interface.</p>
+{% endif %}
