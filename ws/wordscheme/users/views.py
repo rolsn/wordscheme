@@ -39,14 +39,18 @@ def new_registration(request):
     if request.method == "GET":
         return render(request, 'users/register.html', {'form': RegistrationForm().as_ul()})
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def login(request):
-    user = authenticate(request.POST['username'], request.POST['password'])
+    if request.method == "POST":
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
 
-    if user is not None:
-        if user.is_active:
-            print "user is valid!"
+        if user is not None:
+            if user.is_active:
+                return HttpResponse("User %s logged in." % user.username)
+            else:
+                return HttpResponse("User %s is disabled." % user.username)
         else:
-            print "user is an asshole"
-    else:
-        print "username or password WRONG"
+            return HttpResponse("Invalid username or password.")
+    
+    if request.method == "GET":
+        return render(request, 'website/login.html', {'form': LoginForm().as_ul()})
