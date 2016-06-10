@@ -77,3 +77,4 @@ def main(request):
         "username"  : username,
         "articles"  : latest_articles
         })
+

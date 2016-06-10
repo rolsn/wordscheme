@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from . import views
 
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^register/', views.new_registration, name='register'),
     url(r'^login/', views.login, name='login'),
     url(r'^main/', views.main, name='main'),
+    url(r'^logout/', 'django.contrib.auth.views.logout_then_login'),
 ]
