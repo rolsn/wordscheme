@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login as _login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from website.forms import RegistrationForm, LoginForm
+from website.forms import RegistrationForm, LoginForm, ArticleForm
 from website.models import Articles, Comments
 
 def index(request):
@@ -86,3 +86,18 @@ def article(request, id):
         "article": article,
         "comments": comments
         })
+
+@login_required
+def new_article(request):
+    if request.method == 'GET':
+        username = request.user
+
+        return render(request, 'website/new_article.html', {
+            "username": username,
+            "form": ArticleForm(),
+            })
+
+    if request.method == 'POST':
+        article_text = request.POST['article_text']
+
+        return HttpResponse("You wrote: %s" % article_text)
