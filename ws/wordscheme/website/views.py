@@ -57,7 +57,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 _login(request, user)
-                return HttpResponseRedirect('/main', {'username': username})
+                return HttpResponseRedirect(reverse('website:main'))
             else:
                 return HttpResponse("User %s is disabled." % user.username)
         else:
