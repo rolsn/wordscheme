@@ -1,0 +1,8 @@
+<p>Get those creative juices flowing, {{ username }}.</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <br />
+    <input type="submit" value="Submit" />
+</form>
