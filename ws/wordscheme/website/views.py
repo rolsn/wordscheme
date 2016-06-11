@@ -39,20 +39,24 @@ def new_registration(request):
         if emailExists:
             return HttpResponse("Email already registered.")
 
-        User.objects.create_user(params['username'], params['email'], params['password'])
+        try:
+            User.objects.create_user(params['username'], params['email'], params['password'])
+        except:
+            return HttpResponse("Error adding user.")
 
-        return HttpResponseRedirect('/main/')
-
+        user = authenticate(username=params['username'], password=params['password'])
+        return login(request, user=user)
+      
     if request.method == "GET":
         return render(request, 'website/register.html', {'form': RegistrationForm().as_ul()})
 
 
 @require_http_methods(["GET", "POST"])
-def login(request):
+def login(request, **kwargs):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = kwargs['user'] if 'user' in kwargs.keys() else authenticate(username=username, password=password)
 
         if user is not None:
             if user.is_active:
