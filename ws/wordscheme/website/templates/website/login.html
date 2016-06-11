@@ -1,5 +1,12 @@
+<head>
+    <title>Login to WebScheme</title>
+</head>
+
+<p><b>Login</b></p>
 <form method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Login">
 </form>
+
+<p>or <a href="{% url 'website:register' %}">register.</a></p>
