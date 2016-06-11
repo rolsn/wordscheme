@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
 from website.forms import RegistrationForm, LoginForm
-from website.models import Articles
+from website.models import Articles, Comments
 
 def index(request):
     return render(request, 'website/index.html', {})
@@ -75,10 +75,14 @@ def main(request):
 
     return render(request, 'website/main.html', {
         "username"  : username,
-        "articles"  : latest_articles
+        "latest_articles"  : latest_articles
         })
 
 def article(request, id):
     article = Articles.objects.get(id=id)
+    comments = Comments.objects.filter(art_id=id)
 
-    return HttpResponse("This will eventually show you article #%s." % id)
+    return render(request, 'website/article.html', {
+        "article": article,
+        "comments": comments
+        })
