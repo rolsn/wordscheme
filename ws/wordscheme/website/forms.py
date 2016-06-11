@@ -16,7 +16,7 @@ class LoginForm(ModelForm):
 class ArticleForm(ModelForm):
     class Meta:
         model = Articles
-        fields = ['article_text']
+        fields = ['subject', 'article_text']
 
 class CommentForm(ModelForm):
     class Meta:

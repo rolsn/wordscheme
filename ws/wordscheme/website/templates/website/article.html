@@ -1,0 +1,13 @@
+<h2>{{ article.subject }}</h2>
+<p>by <b>{{ article.user_id }}</b></p>
+{{ article.article_text }}
+<h3>Comments</h3>
+{% if comments %}
+    {% for comment in comments %}
+    <p><b>{{ comment.user_id }}</b> on {{ comment.date }} said:</p>
+        {{ comment.comment_text }}
+    {% endfor %}
+{% else %}
+    <p>No one has commented yet.</p>
+{% endif %}
+

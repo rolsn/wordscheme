@@ -78,6 +78,7 @@ def main(request):
         "latest_articles"  : latest_articles
         })
 
+
 def article(request, id):
     article = Articles.objects.get(id=id)
     comments = Comments.objects.filter(art_id=id)
@@ -87,17 +88,30 @@ def article(request, id):
         "comments": comments
         })
 
+
 @login_required
 def new_article(request):
+    username = request.user
+
     if request.method == 'GET':
         username = request.user
 
         return render(request, 'website/new_article.html', {
             "username": username,
-            "form": ArticleForm(),
+            "form": ArticleForm().as_ul(),
             })
 
     if request.method == 'POST':
         article_text = request.POST['article_text']
+        subject = request.POST['subject']
 
-        return HttpResponse("You wrote: %s" % article_text)
+        user = User.objects.get(username=username)
+
+        article = Articles.objects.create(
+                user_id=user,
+                date=timezone.now(),
+                article_text=article_text,
+                subject=subject
+                )
+
+        return HttpResponseRedirect(reverse('website:main'))
