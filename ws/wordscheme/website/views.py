@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login as _login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from website.forms import RegistrationForm, LoginForm, ArticleForm
+from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
 from website.models import Articles, Comments
 
 def index(request):
@@ -78,8 +78,8 @@ def main(request):
     latest_articles = Articles.objects.filter(user_id=uid).order_by('-date')[:5]
 
     return render(request, 'website/main.html', {
-        "username"  : username,
-        "latest_articles"  : latest_articles
+        "username"          : username,
+        "latest_articles"   : latest_articles
         })
 
 
@@ -89,7 +89,8 @@ def article(request, id):
 
     return render(request, 'website/article.html', {
         "article": article,
-        "comments": comments
+        "comments": comments,
+        "comment_form": CommentForm(),
         })
 
 
@@ -101,8 +102,8 @@ def new_article(request):
         username = request.user
 
         return render(request, 'website/new_article.html', {
-            "username": username,
-            "form": ArticleForm().as_ul(),
+            "username"  : username,
+            "form"      : ArticleForm().as_ul(),
             })
 
     if request.method == 'POST':
@@ -112,10 +113,33 @@ def new_article(request):
         user = User.objects.get(username=username)
 
         article = Articles.objects.create(
-                user_id=user,
-                date=timezone.now(),
-                article_text=article_text,
-                subject=subject
+                user_id         = user,
+                date            = timezone.now(),
+                article_text    = article_text,
+                subject         = subject
                 )
 
         return HttpResponseRedirect(reverse('website:main'))
+
+
+@login_required
+@require_http_methods(["POST"])
+def new_comment(request, article_id):
+    username = request.user
+    comment_text = request.POST['comment_text']
+
+    try:
+        article = Articles.objects.get(id=article_id)
+    except:
+        raise Http404("Article not found.")
+
+    user = User.objects.get(username=username)
+
+    Comments.objects.create(
+            user_id         = username,
+            art_id          = article,
+            comment_text    = comment_text,
+            date            = timezone.now()
+            )
+
+    return HttpResponseRedirect(reverse('website:articles', args=(article_id,)))

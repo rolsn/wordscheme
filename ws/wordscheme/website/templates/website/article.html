@@ -11,3 +11,10 @@
     <p>No one has commented yet.</p>
 {% endif %}
 
+<p><u>Leave feedback</u></p>
+<form method="POST" action="{% url 'website:new_comment' article.id %}">
+    {% csrf_token %}
+    {{ comment_form }}
+    <br />
+    <input type="submit" value="Submit" />
+</form>
