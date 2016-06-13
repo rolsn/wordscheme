@@ -82,7 +82,11 @@ def main(request):
 
 
 def article(request, id):
-    article = Articles.objects.get(id=id)
+    try:
+        article = Articles.objects.get(id=id)
+    except Articles.DoesNotExist:
+        raise Http404("Article not found.")
+
     comments = Comments.objects.filter(art_id=id)
 
     return render(request, 'website/article.html', {
