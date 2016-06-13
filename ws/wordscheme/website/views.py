@@ -23,16 +23,14 @@ def new_registration(request):
             return render(request, 'website/register.html', {'form': RegistrationForm().as_ul(), 'error': regForm.errors})
 
         try:
-            params = {
-                    "username": request.POST['username'],
-                    "password": request.POST['password'],
-                    "email": request.POST['email']
-                }
+            username = request.POST['username']
+            password = request.POST['password']
+            email = request.POST['email']
         except KeyError:
             return HttpResponse("Invalid input.")
 
-        userExists = True if len(User.objects.filter(username=params['username'])) == 1 else False
-        emailExists = True if len(User.objects.filter(email=params['email'])) == 1 else False
+        userExists = True if len(User.objects.filter(username=username)) == 1 else False
+        emailExists = True if len(User.objects.filter(email=email)) == 1 else False
 
         if userExists:
             return HttpResponse("Username already taken.")
@@ -40,11 +38,11 @@ def new_registration(request):
             return HttpResponse("Email already registered.")
 
         try:
-            User.objects.create_user(params['username'], params['email'], params['password'])
+            User.objects.create_user(username, email, password)
         except:
             return HttpResponse("Error adding user.")
 
-        user = authenticate(username=params['username'], password=params['password'])
+        user = authenticate(username=username, password=password)
         return login(request, user=user)
       
     if request.method == "GET":
