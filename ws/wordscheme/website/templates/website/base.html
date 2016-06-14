@@ -1,0 +1,19 @@
+<html>
+    <head>
+        {% load staticfiles %}
+        <title>{% block title %}WordScheme{% endblock %}</title>
+	    <meta charset="utf-8" />
+	    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+        <link href="{% static "website/css/main.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/bootstrap.min.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/style.min.css" %}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="content-main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
