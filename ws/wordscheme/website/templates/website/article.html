@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<h2>{{ article.subject }}</h2>
-<p>by <b>{{ article.user_id }}</b></p>
-{{ article.article_text }}
+<div class="article">
+    <span class="article-title">{{ article.subject }}</span> by <span><b>{{ article.user_id }}</b></span>
+    <div class="article-text">{{ article.article_text }}</div>
+</div>
+
 <h3>Comments</h3>
 {% if comments %}
     {% for comment in comments %}
-    <p><b>{{ comment.user_id }}</b> on {{ comment.date }} said:</p>
-        {{ comment.comment_text }}
+    <div class="comment">
+        <p><b>{{ comment.user_id }}</b> on {{ comment.date }} said:</p>
+            <div class="comment-text">{{ comment.comment_text }}</div>
+    </div>
     {% endfor %}
 {% else %}
     <p>No one has commented yet.</p>

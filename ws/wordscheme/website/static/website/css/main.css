@@ -2,3 +2,28 @@
     margin: 0 auto;
     padding: 2em;
 }
+
+.article {
+    margin-bottom: 2em;
+}
+
+.article-text {
+    padding: 1em;
+    font-size: 1.2em;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.article-title {
+    font-size: 2em;
+}
+
+.comment {
+    background-color: whitesmoke;
+    margin: 1em;
+    padding: 0.5em 1em 1em 1em;
+}
+
+.comment-text {
+    padding: 0.5em;
+}
