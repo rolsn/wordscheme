@@ -1,9 +1,147 @@
-<div id="header">
-    <h2>Welcome to WordScheme!</h2>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    {% load staticfiles %}
+	<meta charset="utf-8" />
+	<title>WordScheme</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="{% static "website/css/bootstrap.min.css" %}" rel="stylesheet" />
+    <link href="{% static "website/css/font-awesome.min.css" %}" rel="stylesheet" />
+    <link href="{% static "website/css/animate.min.css" %}" rel="stylesheet" />
+    <link href="{% static "website/css/style.min.css" %}" rel="stylesheet" />
+    <link href="{% static "website/css/style-responsive.min.css" %}" rel="stylesheet" />
+    <link href="{% static "website/css/blue.css" %}" id="theme" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+    <script src="{% static "website/js/pace.min.js" %}"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+
+<body>
+<!-- begin #page-container -->
+<div id="page-container" class="fade">
+  <!-- begin #header -->
+    <div id="header">
+    </div>
+
+  <!-- end #header -->
+  
+  <!-- begin #home -->
+  <div id="home" class="content has-bg home">
+    <!-- home here -->
+    <div class="content-bg">
+        <img src="{% static "website/img/library.jpg" %}" alt="Home" />
+    </div>
+      <div class="container home-content">
+          <h1>Welcome to WordScheme</h1>
+          <p>
+              WordScheme is the world's leading website for sharing, collaborating and proofreading written work before it's been completed. Share with the world, or just your friends. It's up to you.<br />
+          </p>
+          <a href="/register" class="btn btn-theme">Register</a> <a href="/login" class="btn btn-outline">Login</a><br />
+          <br />
+      </div>
+  </div>
+
+  <!-- end #home -->
+  
+  <!-- begin #about -->
+  <div id="about" class="content" data-scrollview="true">
+    <!-- about us here -->
+    <div id="about" class="content" data-scrollview="true">
+        <!-- begin container -->
+        <div class="container" data-animation="true" data-animation-type="fadeInDown">
+            <h2 class="content-title">About Us</h2>
+            <p class="content-desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer erat nunc, sagittis a ante sit amet, finibus blandit tortor. Morbi eu gravida leo. Nulla nec bibendum elit. Maecenas a est a lectus sollicitudin maximus et tempor ipsum. Sed id nisi egestas, blandit orci in, pellentesque metus.
+            </p>
+            <p class="content-desc">
+                Quisque tincidunt mattis augue, nec porta leo rutrum nec. Sed venenatis nibh nec libero tristique consequat. Pellentesque neque arcu, gravida eget dapibus id, auctor eu massa. Mauris pretium leo libero, vitae malesuada neque congue hendrerit. Nulla maximus pretium magna id tincidunt.
+            </p>
+        </div>
+        <!-- end container -->
+    </div>
+
+  </div>
+  <!-- end #about -->
+ 
+  <!-- begin #quote -->
+  <div id="quote" class="content bg-black-darker has-bg" data-scrollview="true">
+    <!-- quote here -->
+    <div class="content-bg">
+        <img src="{% static "website/img/reading-glasses.jpg" %}" alt="Quote" />
+    </div>
+    <!-- end content-bg -->
+    <!-- begin container -->
+    <div class="container" data-animation="true" data-animation-type="fadeInLeft">
+        <!-- begin row -->
+        <div class="row">
+            <!-- begin col-12 -->
+            <div class="col-md-12 quote">
+                <i class="fa fa-quote-left"></i> For a true writer, each book should be a <span class="text-theme">new beginning</span> where he tries again for something that is beyond attainment. He should always try for something that has never been done or that others have tried and failed. Then sometimes, with great luck, he will <span class="text-theme">succeed</span>.
+                <i class="fa fa-quote-right"></i>
+                <small>Ernest Hemingway</small>
+            </div>
+            <!-- end col-12 -->
+        </div>
+        <!-- end row -->
+    </div>
+            <!-- end container -->
+  </div>
+  <!-- end #quote -->
+  
+
+ 
+  <!-- begin #footer -->
+    <!-- footer here -->
+  <div id="footer" class="footer">
+      <div class="container">
+          <div class="footer-brand">
+              <div class="footer-brand-logo"></div>
+              WordScheme
+          </div>
+          <p>
+              &copy; Copyright 2016 Edge Case Labs <br />
+              Front page template created with Color Admin by SeanTheme.
+          </p>
+          <p class="social-list">
+              <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
+              <a href="#"><i class="fa fa-instagram fa-fw"></i></a>
+              <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
+              <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
+              <a href="#"><i class="fa fa-dribbble fa-fw"></i></a>
+          </p>
+      </div>
+  </div>
+  <!-- end #footer -->
+  
 </div>
-<div id="info_text">
-    <p>WordScheme is the world's leading website for sharing, collaborating and proofreading written work before it's been completed. Share with the world, or just your friends. It's up to you.</p>
-</div>
-<div id="get_started">
-    <a href="/register">Sign Up</a> or <a href="/login">Log In</a>
-</div>
+<!-- end #page-container -->
+
+  <!-- ================== BEGIN BASE JS ================== -->
+  <script src="{% static "website/js/jquery-1.9.1.min.js" %}"></script>
+  <!-- <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> -->
+  <!--[if lt IE 9]>
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+  <![endif]-->
+  <script src="{% static "website/js/scrollMonitor.js" %}"></script>
+  <script src="{% static "website/js/apps.min.js" %}"></script>
+  <!-- ================== END BASE JS ================== -->
+  
+  <script>  
+    $(document).ready(function() {
+    App.init();
+    });
+  </script>
+</body>
+</html>
