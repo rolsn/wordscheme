@@ -1,6 +1,8 @@
-<head>
-    <title>Login to WebScheme</title>
-</head>
+{% extends "website/base.html" %}
+
+{% block title %}Login to WebScheme{% endblock %}
+
+{% block content %}
 
 <p><b>Login</b></p>
 <form method="post">
@@ -10,3 +12,5 @@
 </form>
 
 <p>or <a href="{% url 'website:register' %}">register.</a></p>
+
+{% endblock %}

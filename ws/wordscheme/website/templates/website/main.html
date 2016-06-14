@@ -1,3 +1,7 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
 {% if username %}
 <p>Welcome, {{ username }}. 
 {% else %}
@@ -20,3 +24,5 @@ This is the WordScheme main interface.</p>
 
 <br />
 <a href="/logout">Log out</a>
+
+{% endblock %}

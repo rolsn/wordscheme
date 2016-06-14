@@ -1,3 +1,7 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
 <p>Get those creative juices flowing, {{ username }}.</p>
 
 <form method="POST">
@@ -9,3 +13,5 @@
 
 <br />
 <a href="{% url 'website:main' %}">Cancel</a>
+
+{% endblock %}

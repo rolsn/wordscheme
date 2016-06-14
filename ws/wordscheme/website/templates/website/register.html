@@ -1,6 +1,7 @@
-<head>
-    <title>Join WebScheme</title>
-</head>
+{% extends "website/base.html" %}
+
+{% block content %}
+
 <h2>Create your personal WebScheme account</h2>
 {% if error %}
 {{ error }}
@@ -12,3 +13,5 @@
     <input type="submit" value="Register">
 </form>
 <p>By clicking on "Register", you are agreeing to the Terms and Conditions and the Privacy Policy.</p>
+
+{% endblock %}
