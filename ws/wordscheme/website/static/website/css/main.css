@@ -56,3 +56,27 @@ p { font-size: 14px; }
 #nav-links a:hover { color: #59b3ff; }
 
 .return-link { float:right; }
+
+#user-banner {
+    margin: -30px -2em 0 -2em;
+    height: 250px;
+    background: linear-gradient(#e1e1e1, #bfbfbf);
+    padding: 1em;
+}
+
+#user-banner-portrait {
+    background-color: #000;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 100px;
+    position: absolute;
+    right: 10%;
+}
+
+#user-banner-username {
+    color: #fff;
+    font-size: 2em;
+    background: #000;
+    padding: 6px;
+    margin-left: 3em;
+}

@@ -153,4 +153,18 @@ def new_comment(request, article_id):
 
 @login_required
 def user(request, username):
-    return HttpResponse("You selected %s." % username)
+    username = request.user
+
+    try:
+        user = User.objects.get(username=username)
+        uid = user.id
+    except:
+        raise Http404("User not found.")
+
+    all_articles = Articles.objects.filter(id=uid)
+
+    return render(request, 'website/user.html', {
+        "username"      : username,
+        "uid"           : uid,
+        "all_articles"  : all_articles
+        })
