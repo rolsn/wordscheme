@@ -150,3 +150,7 @@ def new_comment(request, article_id):
             )
 
     return HttpResponseRedirect(reverse('website:articles', args=(article_id,)))
+
+@login_required
+def user(request, username):
+    return HttpResponse("You selected %s." % username)
