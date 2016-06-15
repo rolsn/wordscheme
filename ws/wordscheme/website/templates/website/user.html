@@ -4,7 +4,27 @@
 
 <div id="user-banner">
     <span id="user-banner-portrait"></span>
-    <span id="user-banner-username">{{ username }}</span>
+    <span id="user-banner-username">{{ reqUser.username }}</span>
+</div>
+
+<div id="user-bio">
+    <h2>User Information</h2>
+    <div><span class="bio-bold">Name:</span> <span>{{ reqUser.first_name }} {{ reqUser.last_name }}</span></div>
+    <div><span class="bio-bold">Registered:</span> <span>{{ reqUser.date_joined }}</span></div>
+    <div><span class="bio-bold">Articles written:</span> <span>{{ totalArticles }}</span></div>
+</div>
+
+<div id="user-latest-articles">
+    <h2>Latest public articles</h2>
+
+    {% if totalArticles > 0 %}
+    <ol>
+        {% for article in allArticles %}
+        <li><a href="{% url 'website:articles' article.id %}">{{ article.subject }}</a></li>
+        {% endfor %}
+    {% else %}
+    <p>{{ reqUser.username }} hasn't written anything yet.</p>
+    {% endif %}
 </div>
 
 {% endblock %}
