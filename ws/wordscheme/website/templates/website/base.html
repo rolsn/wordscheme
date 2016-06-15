@@ -5,15 +5,68 @@
 	    <meta charset="utf-8" />
 	    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
-        <link href="{% static "website/css/main.css" %}" rel="stylesheet" />
         <link href="{% static "website/css/bootstrap.min.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/font-awesome.min.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/animate.min.css" %}" rel="stylesheet" />
         <link href="{% static "website/css/style.min.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/style-responsive.min.css" %}" rel="stylesheet" />
+        <link href="{% static "website/css/blue.css" %}" id="theme" rel="stylesheet" />
+        <link href="{% static "website/css/main.css" %}" rel="stylesheet" />
 
     </head>
     <body>
-        <div class="content-main">
+        {% block nav %}
+        {% if current_user.is_authenticated %}
+        <div class="app-nav-main">
+            <div id="navigation" class="header navbar navbar-transparent navbar-fixed-top">
+                <!-- begin container -->
+                <div class="container">
+                    <!-- begin navbar-header -->
+                    <div class="navbar-header">
+                        <a href="{% url 'website:main' %}" class="navbar-brand">
+                            <span class="brand-text">
+                                <div><i id="nav-logo" class="fa fa-book fa-2x" aria-hidden="true"></i></div>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- end navbar-header -->
+                    <!-- begin navbar-collapse -->
+                    <div id="nav-links" class="collapse navbar-collapse" id="header-navbar">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="{% url 'website:main' %}" data-click="scroll-to-target">Home</a></li>
+                            <li><a href="{% url 'website:new_article' %}" data-click="scroll-to-target">New Article</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active dropdown">
+                                <a href="#home" data-click="scroll-to-target" data-toggle="dropdown">{{ current_user }} <b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="{% url 'website:logout' %}">Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end navbar-collapse -->
+                </div>
+                <!-- end container -->
+            </div>
+        </div>
+        {% endif %}
+        {% endblock %}
+
+        <div class="app-content-main">
             {% block content %}
             {% endblock %}
         </div>
-    </body>
+
+    <script src="{% static "website/js/jquery-1.9.1.min.js" %}"></script>
+    <script src="{% static "website/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "website/js/scrollMonitor.js" %}"></script>
+    <script src="{% static "website/js/apps.min.js" %}"></script>
+	<script>    
+	    $(document).ready(function() {
+	        App.init();
+	    });
+	</script>
+</body>
 </html>
