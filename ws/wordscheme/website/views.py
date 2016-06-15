@@ -78,11 +78,10 @@ def logout(request):
 def main(request):
     username = request.user
     uid = User.objects.get(username=username).id
-    latest_articles = Articles.objects.filter(user_id=uid).order_by('-date')[:5]
+    latestArticles = Articles.objects.all().order_by('-date')[:20]
 
     return render(request, 'website/main.html', {
-        "username"          : username,
-        "latest_articles"   : latest_articles
+        "latestArticles"    : latestArticles
         })
 
 

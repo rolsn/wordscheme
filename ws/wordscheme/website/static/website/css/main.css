@@ -17,6 +17,30 @@ p { font-size: 14px; }
     margin-bottom: 2em;
 }
 
+.article-card {
+    width: 90%;
+    margin: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 4px;
+}
+
+.article-card-comments {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.article-card-header {
+    background-color: #f1f1f1;
+    padding: 0.75em;
+    position: relative;
+}
+
+.article-card-author { font-size: 1.1em; }
+.article-card-date p { font-size: 0.75em; }
+.article-card-preview { padding: 0.75em; }
+.article-card-subject { font-size: 1.75em; }
+
 .article-text {
     padding: 1em;
     font-size: 1.2em;
@@ -39,7 +63,7 @@ p { font-size: 14px; }
 }
 
 #navigation {
-    background-color: #000;
+    background-color: #483324;
     position: fixed;
     top: 0;
     right: 0;
