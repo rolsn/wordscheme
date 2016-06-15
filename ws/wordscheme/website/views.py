@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as _login
+from django.contrib.auth import authenticate, login as _login, logout as _logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
@@ -68,6 +68,11 @@ def login(request, **kwargs):
     if request.method == "GET":
         return render(request, 'website/login.html', {'form': LoginForm().as_ul()})
 
+def logout(request):
+    _logout(request)
+
+    return HttpResponseRedirect(reverse('website:index'))
+
 
 @login_required
 def main(request):
@@ -90,9 +95,9 @@ def article(request, id):
     comments = Comments.objects.filter(art_id=id)
 
     return render(request, 'website/article.html', {
-        "article": article,
-        "comments": comments,
-        "comment_form": CommentForm(),
+        "article"       : article,
+        "comments"      : comments,
+        "comment_form"  : CommentForm()
         })
 
 
