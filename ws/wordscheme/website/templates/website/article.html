@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<a class="return-link" href="{% url 'website:main' %}">Back</a>
+
 <div class="article">
     <span class="article-title">{{ article.subject }}</span> by <span><b>{{ article.user_id }}</b></span>
     <div class="article-text">{{ article.article_text }}</div>
@@ -27,6 +29,5 @@
     <input type="submit" value="Submit" />
 </form>
 <br />
-<a href="{% url 'website:main' %}">Back to main menu</a>
 
 {% endblock %}
