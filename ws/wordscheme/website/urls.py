@@ -1,5 +1,4 @@
 from django.conf.urls import url, include
-from django.contrib.auth.views import logout_then_login
 
 from . import views
 
@@ -12,5 +11,5 @@ urlpatterns = [
     url(r'articles/(?P<id>[0-9]+)/$', views.article, name='articles'),
     url(r'comment/(?P<article_id>[0-9]+)/$', views.new_comment, name='new_comment'),
     url(r'new/', views.new_article, name='new_article'),
-    url(r'^logout/', logout_then_login, name='logout'),
+    url(r'^logout/', views.index, name='logout'),
 ]
