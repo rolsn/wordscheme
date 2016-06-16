@@ -1,0 +1,14 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<a class="return-link" href="{% url 'website:main' %}">Back</a>
+{% if searchResults %}
+    {% for article in searchResults %}
+        {% include "website/article_card.html" %}
+    {% endfor %}
+{% else %}
+    <p>No search results found.</p>
+{% endif %}
+
+{% endblock %}
