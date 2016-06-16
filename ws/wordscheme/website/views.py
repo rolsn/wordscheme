@@ -173,3 +173,13 @@ def user(request, username):
         "allArticles"   : all_articles,
         "totalArticles" : len(all_articles)
         })
+
+
+@login_required
+def search(request, search_term):
+    results = Articles.objects.filter(subject__icontains=search_term)
+
+    return render(request, 'website/search.html', {
+        "searchResults" : results
+        })
+

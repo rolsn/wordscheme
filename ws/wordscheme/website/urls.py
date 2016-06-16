@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'new/', views.new_article, name='new_article'),
     url(r'^logout/', views.logout, name='logout'),
     url(r'users/(?P<username>[a-zA-Z0-9]+)/$', views.user, name='users'),
+    url(r'search/(?P<search_term>[a-zA-Z0-9]+)/$', views.search, name='search'),
 ]
