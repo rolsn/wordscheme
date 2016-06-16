@@ -15,47 +15,7 @@
 
     </head>
     <body>
-        {% block nav %}
-        {% if current_user.is_authenticated %}
-        <div class="app-nav-main">
-            <div id="navigation" class="header navbar navbar-transparent navbar-fixed-top">
-                <!-- begin container -->
-                <div class="container">
-                    <!-- begin navbar-header -->
-                    <div class="navbar-header">
-                        <a href="{% url 'website:main' %}" class="navbar-brand">
-                            <span class="brand-text">
-                                <div><i id="nav-logo" class="fa fa-book fa-2x" aria-hidden="true"></i></div>
-                            </span>
-                        </a>
-                    </div>
-                    <!-- end navbar-header -->
-                    <!-- begin navbar-collapse -->
-                    <div id="nav-links" class="collapse navbar-collapse" id="header-navbar">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a href="{% url 'website:main' %}" data-click="scroll-to-target">Home</a></li>
-                            <li><a href="{% url 'website:new_article' %}" data-click="scroll-to-target">New Article</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active dropdown">
-                                <a href="#home" data-click="scroll-to-target" data-toggle="dropdown">{{ current_user }} <b class="caret"></b></a>
-                                <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                    <li><a href="{% url 'website:users' current_user %}">Profile</a></li>
-                                    <li><a href="#">Articles</a></li>
-                                    <li><a href="#">Friends</a></li>
-                                    <li><a href="#">Guilds</a></li>
-                                    <li><a href="{% url 'website:logout' %}">Log Out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end navbar-collapse -->
-                </div>
-                <!-- end container -->
-            </div>
-        </div>
-        {% endif %}
-        {% endblock %}
+        {% include "website/nav.html" %}
 
         <div class="app-content-main">
             {% block content %}
