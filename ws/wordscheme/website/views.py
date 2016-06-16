@@ -78,10 +78,16 @@ def logout(request):
 def main(request):
     username = request.user
     uid = User.objects.get(username=username).id
-    latestArticles = Articles.objects.all().order_by('-date')[:20]
+    latestArticles = Articles.objects.all().order_by('-date')[:10]
+    
+    commentCounts = {}
+    for art in latestArticles:
+        numOfComments = len(Comments.objects.filter(art_id=art.id))
+        commentCounts[art.id] = numOfComments
 
     return render(request, 'website/main.html', {
-        "latestArticles"    : latestArticles
+        "latestArticles"    : latestArticles,
+        "commentCounts"     : commentCounts
         })
 
 
