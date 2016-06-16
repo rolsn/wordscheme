@@ -1,0 +1,10 @@
+{% block card %}
+<div class="article-card">
+    <div class="article-card-header">
+        <span class="article-card-subject"><a href="{% url 'website:articles' article.id %}">{{ article.subject }}</a></span> by <span class="article-card-author"><a href="{% url 'website:users' article.user_id %}">{{ article.user_id }}</a></span>
+        <div class="article-card-date"><p>Authored on {{ article.date }}</p></div>
+        <div class="article-card-comments">3 comments</div>
+    </div>
+    <div class="article-card-preview"><p>{% lorem 30 w random %} ...</p></div>
+</div>
+{% endblock %}
