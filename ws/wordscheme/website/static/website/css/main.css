@@ -81,6 +81,9 @@ p { font-size: 14px; }
 
 .return-link { float:right; }
 
+#search-form-group > input { width: 500px; }
+#search-form-group > button { visibility:hidden }
+
 #user-banner {
     margin: -30px -2em 0 -2em;
     height: 250px;
