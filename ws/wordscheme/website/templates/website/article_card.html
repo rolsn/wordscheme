@@ -5,6 +5,6 @@
         <div class="article-card-date"><p>Authored on {{ article.date }}</p></div>
         <div class="article-card-comments">3 comments</div>
     </div>
-    <div class="article-card-preview"><p>{% lorem 30 w random %} ...</p></div>
+    <div class="article-card-preview"><p>{{ article.preview }} ...</p></div>
 </div>
 {% endblock %}

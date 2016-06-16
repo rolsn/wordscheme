@@ -10,6 +10,12 @@ class Articles(models.Model):
     article_text    = models.TextField()
     subject         = models.CharField(max_length=64)
 
+    def __str__(self):
+        return "%s %s..." % (self.user_id, self.article_text[:20])
+
+    def preview(self):
+        return "%s" % self.article_text[:200]
+
 class Comments(models.Model):
     user_id         = models.ForeignKey(User, on_delete=models.CASCADE)
     art_id          = models.ForeignKey(Articles, on_delete=models.CASCADE)
