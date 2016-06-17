@@ -1,9 +1,12 @@
 from django.conf.urls import url, include
 from django.contrib.auth.views import logout_then_login
+from rest_framework import routers
 
 from . import views
 
-app_name="website"
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'register/', views.new_registration, name='register'),
@@ -15,4 +18,6 @@ urlpatterns = [
     url(r'^logout/', views.logout, name='logout'),
     url(r'users/(?P<username>[a-zA-Z0-9]+)/$', views.user, name='users'),
     url(r'search/(?P<search_term>[a-zA-Z0-9]+)/$', views.search, name='search'),
+    url(r'api/', include(router.urls)),
+    url(r'api-auth/', include('rest_framework.urls')),
 ]

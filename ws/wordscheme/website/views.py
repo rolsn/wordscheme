@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as _login, logout as _logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from rest_framework import viewsets
 
 from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
 from website.models import Articles, Comments
+from website.serializers import UserSerializer
 
 def index(request):
     return render(request, 'website/index.html', {})
@@ -183,3 +185,8 @@ def search(request, search_term):
         "searchResults" : results
         })
 
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
