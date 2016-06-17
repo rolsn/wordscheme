@@ -178,13 +178,17 @@ def profiles(request, username):
 
 
 @login_required
-def search(request, search_term):
-    results = Articles.objects.filter(subject__icontains=search_term)
+def search(request):
+    if request.method == "POST":
+        search_term = request.POST['search'];
+        results = Articles.objects.filter(subject__icontains=search_term)
 
-    return render(request, 'website/search.html', {
-        "searchResults" : results
-        })
+        return render(request, 'website/search.html', {
+            "searchResults" : results
+            })
 
+    if request.method == "GET":
+        return render(request, 'website/search.html', {})
 
 
 class UserViewSet(viewsets.ModelViewSet):
