@@ -160,7 +160,7 @@ def new_comment(request, article_id):
 
 
 @login_required
-def user(request, username):
+def profiles(request, username):
     try:
         user = User.objects.get(username=username)
         uid = user.id

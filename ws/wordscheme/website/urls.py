@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'comment/(?P<article_id>[0-9]+)/$', views.new_comment, name='new_comment'),
     url(r'new/', views.new_article, name='new_article'),
     url(r'^logout/', views.logout, name='logout'),
-    url(r'users/(?P<username>[a-zA-Z0-9]+)/$', views.user, name='users'),
+    url(r'profiles/(?P<username>[a-zA-Z0-9]+)/$', views.profiles, name='profiles'),
     url(r'search/(?P<search_term>[a-zA-Z0-9]+)/$', views.search, name='search'),
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
