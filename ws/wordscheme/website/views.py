@@ -61,7 +61,7 @@ def login(request, **kwargs):
         if user is not None:
             if user.is_active:
                 _login(request, user)
-                return HttpResponseRedirect(reverse('website:main'))
+                return HttpResponseRedirect(reverse('main'))
             else:
                 return HttpResponse("User %s is disabled." % user.username)
         else:
@@ -73,7 +73,7 @@ def login(request, **kwargs):
 def logout(request):
     _logout(request)
 
-    return HttpResponseRedirect(reverse('website:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 
 @login_required
@@ -133,7 +133,7 @@ def new_article(request):
                 subject         = subject
                 )
 
-        return HttpResponseRedirect(reverse('website:main'))
+        return HttpResponseRedirect(reverse('main'))
 
 
 @login_required
@@ -156,7 +156,7 @@ def new_comment(request, article_id):
             date            = timezone.now()
             )
 
-    return HttpResponseRedirect(reverse('website:articles', args=(article_id,)))
+    return HttpResponseRedirect(reverse('articles', args=(article_id,)))
 
 
 @login_required

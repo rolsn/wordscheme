@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a class="return-link" href="{% url 'website:main' %}">Back</a>
+<a class="return-link" href="{% url 'main' %}">Back</a>
 
 <div class="article">
     <span class="article-title">{{ article.subject }}</span> by <span><b>{{ article.user_id }}</b></span>
@@ -22,7 +22,7 @@
 {% endif %}
 
 <p><u>Leave feedback</u></p>
-<form method="POST" action="{% url 'website:new_comment' article.id %}">
+<form method="POST" action="{% url 'new_comment' article.id %}">
     {% csrf_token %}
     {{ comment_form }}
     <br />
