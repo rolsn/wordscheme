@@ -5,14 +5,11 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 
+from django.contrib.auth.models import User
 
 class Migration(migrations.Migration):
 
     initial = True
-
-    dependencies = [
-        ('users', '0001_initial'),
-    ]
 
     operations = [
         migrations.CreateModel(
@@ -22,7 +19,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(verbose_name='Publication Date')),
                 ('article_text', models.TextField()),
                 ('subject', models.CharField(max_length=64)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Users')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='User')),
             ],
         ),
     ]
