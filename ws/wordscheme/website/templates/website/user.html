@@ -7,11 +7,19 @@
     <span id="user-banner-username">{{ reqUser.username }}</span>
 </div>
 
+<br />
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#bio">User Info</a></li>
+    <li role="presentation"><a href="#articles">Articles</a></li>
+    <li role="presentation"><a href="#comments">Comments</a></li>
+</ul>
+
 <div id="user-bio">
     <h2>User Information</h2>
     <div><span class="bio-bold">Name:</span> <span>{{ reqUser.first_name }} {{ reqUser.last_name }}</span></div>
     <div><span class="bio-bold">Registered:</span> <span>{{ reqUser.date_joined }}</span></div>
     <div><span class="bio-bold">Articles written:</span> <span>{{ totalArticles }}</span></div>
+    <div><span class="bio-bold">About me:</span> <span><i>There's nothing here...</i></span></div>
 </div>
 
 <div id="user-latest-articles">
@@ -26,5 +34,10 @@
     <p>{{ reqUser.username }} hasn't written anything yet.</p>
     {% endif %}
 </div>
+
+<div id="user-latest-comments">
+    <h2>Latest public comments</h2>
+</div>
+
 
 {% endblock %}
