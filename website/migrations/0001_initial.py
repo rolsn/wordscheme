@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(verbose_name='Publication Date')),
                 ('article_text', models.TextField()),
                 ('subject', models.CharField(max_length=64)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='User')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.User')),
             ],
         ),
     ]
