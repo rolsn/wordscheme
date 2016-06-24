@@ -20,7 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd_r^tf$4*hfb_tfg+!w09t69zc)luviqhb+hf-13=(rvx6h&x-'
+# Put secret_key.txt at the root of your Django project (i.e., where manage.py lives)
+
+with open('./secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,12 +81,15 @@ WSGI_APPLICATION = 'wordscheme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+with open('./dbpass.txt') as f:
+    DBPASS = f.read().strip()
+
 DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.postgresql',
         'NAME'      : 'wordscheme',
         'USER'      : 'wsdb',
-        'PASSWORD'  : 'itdoesntevenmatterwhatiputhere',
+        'PASSWORD'  : DBPASS,
         'HOST'      : '127.0.0.1',
         'PORT'      : '5432'
     }
