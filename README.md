@@ -36,7 +36,8 @@ postgres=# \q
 
 Open `webscheme/settings.py`. Change the following:
 * Change `SECRET_KEY`.
-* Set `DEBUG` to `False`.
+* Set `DATABASES['default']['PASSWORD']` to the password you set previously.
+* Keep `DEBUG=True`. Only turn this off when putting into production, otherwise static files won't be served correctly without further configuration from your web server.
 
 If all goes well, this will get you running with the Django development server.
 Webserver configuration is beyond the scope of this document.
