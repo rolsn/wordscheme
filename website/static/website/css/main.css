@@ -73,12 +73,12 @@ p { font-size: 14px; }
 
 #nav-hamburger { margin: 10px; }
 
-.nav > li > a {
+#navbar-collapse-content a {
     color: #fff;
     text-transform: uppercase;
 }
 
-.nav > li > a:focus, .nav > li > a:hover {
+#navbar-collapse-content a:focus, #navbar-collapse-content a:hover {
     background-color: #483324;
     color: #fff;
     text-decoration: underline;
