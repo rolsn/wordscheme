@@ -12,8 +12,22 @@ from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
 from website.models import Articles, Comments
 from website.serializers import UserSerializer
 
+from random import randrange
+import re
+
 def index(request):
     return render(request, 'website/index.html', {})
+
+
+def format_urlname(text):
+    """
+    Creates IDs for various models based on the input text.
+    """
+    text = re.sub('[^A-Za-z0-9 ]', '', text)
+    text = re.sub(' +', '_', text).lower().strip('_')[:40]
+    prefix = '%06x' % randrange(16**6)
+
+    return "%s-%s" % (prefix, text)
 
 
 @require_http_methods(["GET", "POST"])
@@ -93,13 +107,13 @@ def main(request):
         })
 
 
-def article(request, id):
+def article(request, aid):
     try:
-        article = Articles.objects.get(id=id)
+        article = Articles.objects.get(urlname=aid)
     except Articles.DoesNotExist:
         raise Http404("Article not found.")
 
-    comments = Comments.objects.filter(art_id=id)
+    comments = Comments.objects.filter(art_id=article.id)
 
     return render(request, 'website/article.html', {
         "article"       : article,
@@ -130,7 +144,8 @@ def new_article(request):
                 user_id         = user,
                 date            = timezone.now(),
                 article_text    = article_text,
-                subject         = subject
+                subject         = subject,
+                urlname         = format_urlname(subject)
                 )
 
         return HttpResponseRedirect(reverse('main'))

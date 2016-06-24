@@ -9,6 +9,7 @@ class Articles(models.Model):
     date            = models.DateTimeField('Publication Date')
     article_text    = models.TextField()
     subject         = models.CharField(max_length=64)
+    urlname         = models.CharField(max_length=48)
 
     def __str__(self):
         return "%s %s..." % (self.user_id, self.article_text[:20])
