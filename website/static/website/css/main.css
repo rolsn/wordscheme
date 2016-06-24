@@ -64,25 +64,58 @@ p { font-size: 14px; }
 
 #navigation {
     background-color: #483324;
+    /*
     position: fixed;
     top: 0;
     right: 0;
-    left: 0;
+    left: 0; */
 }
 
-#nav-logo { line-height: 18px; }
+#nav-hamburger { margin: 10px; }
 
-#nav-links a {
+.nav > li > a {
     color: #fff;
     text-transform: uppercase;
 }
 
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #483324;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #483324;
+}
+
+.navbar-nav .dropdown-menu > li > a, .navbar-nav .dropdown-menu > li > a:hover {
+    color: #fff;
+}
+
+.navbar-nav .open .dropdown-menu > li > a { color: #fff; }
+
+.nav .open > a, .nav .open > a:focus, .nav .open a:hover {
+    background-color: #483324;
+    text-decoration: none;
+}
+
+#navbar-collapse-content {
+    background-color: #483324;
+}
+
 #nav-links a:hover { color: #59b3ff; }
+
+#nav-logo {
+    line-height: 18px;
+    color: #fff;
+}
+
+#nav-right-dropdown { margin-right: 90px; }
 
 .return-link { float:right; }
 
-#search-form-group > input { width: 500px; }
-#search-form-group > button { visibility:hidden }
+#search-form-group > input { min-width: 250px; }
+#search-form-group > button { display: none; }
 
 #user-banner {
     margin: -30px -2em 0 -2em;
