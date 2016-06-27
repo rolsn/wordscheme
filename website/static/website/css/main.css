@@ -1,5 +1,5 @@
 body {
-  background-color: #f2f2f2;
+  background-color: #fff;
   font-size: 14px; }
 
 p {
@@ -7,16 +7,12 @@ p {
 
 .app-content-main {
   margin: 0 auto;
-  padding: 100px 2em 2em 2em;
-  width: 90%;
-  height: 100%;
-  background-color: #fff; }
+  padding: 100px 2em 2em 2em; }
 
 .article {
   margin-bottom: 2em; }
 
 .article-card {
-  width: 90%;
   margin: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 4px; }
@@ -61,7 +57,7 @@ p {
   padding: 0.5em; }
 
 #navigation {
-  background-color: #483324;
+  background-color: #2f2f2f;
   /*
     position: fixed;
     top: 0;
@@ -76,12 +72,12 @@ p {
   text-transform: uppercase; }
 
 #navbar-collapse-content a:focus, #navbar-collapse-content a:hover {
-  background-color: #483324;
+  background-color: #2f2f2f;
   color: #fff;
   text-decoration: underline; }
 
 .navbar-nav .dropdown-menu {
-  background-color: #483324; }
+  background-color: #2f2f2f; }
 
 .navbar-nav .dropdown-menu > li > a, .navbar-nav .dropdown-menu > li > a:hover {
   color: #fff; }
@@ -90,11 +86,11 @@ p {
   color: #fff; }
 
 .nav .open > a, .nav .open > a:focus, .nav .open a:hover {
-  background-color: #483324;
+  background-color: #2f2f2f;
   text-decoration: none; }
 
 #navbar-collapse-content {
-  background-color: #483324; }
+  background-color: #2f2f2f; }
 
 #nav-links a:hover {
   color: #59b3ff; }
@@ -120,7 +116,7 @@ p {
   height: 250px;
   background: linear-gradient(#e1e1e1, #bfbfbf);
   padding: 1em; }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     #user-banner {
       height: 175px; } }
 
@@ -131,7 +127,7 @@ p {
   padding: 100px;
   position: absolute;
   right: 10%; }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     #user-banner-portrait {
       padding: 50px; } }
 
@@ -141,6 +137,6 @@ p {
   background: #000;
   padding: 6px;
   margin-left: 3em; }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     #user-banner-username {
       margin-left: 1em; } }

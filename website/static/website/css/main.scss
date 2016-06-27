@@ -3,7 +3,7 @@ $nav-bg-color: #2f2f2f;
 $nav-fg-color: #fff;
 
 body {
-    background-color: #f2f2f2;
+    background-color: #fff;
     font-size: 14px;
 }
 
@@ -12,9 +12,6 @@ p { font-size: 14px; }
 .app-content-main {
     margin: 0 auto;
     padding: 100px 2em 2em 2em;
-    width: 90%;
-    height: 100%;
-    background-color: #fff;
 }
 
 .article {
@@ -22,7 +19,6 @@ p { font-size: 14px; }
 }
 
 .article-card {
-    width: 90%;
     margin: 1em;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     border-radius: 4px;
@@ -67,7 +63,7 @@ p { font-size: 14px; }
 }
 
 #navigation {
-    background-color: #483324;
+    background-color: $nav-bg-color;
     /*
     position: fixed;
     top: 0;
@@ -78,40 +74,40 @@ p { font-size: 14px; }
 #nav-hamburger { margin: 10px; }
 
 #navbar-collapse-content a {
-    color: #fff;
+    color: $nav-fg-color;
     text-transform: uppercase;
 }
 
 #navbar-collapse-content a:focus, #navbar-collapse-content a:hover {
-    background-color: #483324;
-    color: #fff;
+    background-color: $nav-bg-color;
+    color: $nav-fg-color;
     text-decoration: underline;
 }
 
 .navbar-nav .dropdown-menu {
-    background-color: #483324;
+    background-color: $nav-bg-color;
 }
 
 .navbar-nav .dropdown-menu > li > a, .navbar-nav .dropdown-menu > li > a:hover {
-    color: #fff;
+    color: $nav-fg-color;
 }
 
 .navbar-nav .open .dropdown-menu > li > a { color: #fff; }
 
 .nav .open > a, .nav .open > a:focus, .nav .open a:hover {
-    background-color: #483324;
+    background-color: $nav-bg-color;
     text-decoration: none;
 }
 
 #navbar-collapse-content {
-    background-color: #483324;
+    background-color: $nav-bg-color;
 }
 
 #nav-links a:hover { color: #59b3ff; }
 
 #nav-logo {
     line-height: 18px;
-    color: #fff;
+    color: $nav-fg-color;
 }
 
 #nav-right-dropdown { margin-right: 90px; }
