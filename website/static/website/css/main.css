@@ -140,3 +140,8 @@ p {
   @media screen and (max-width: 767px) {
     #user-banner-username {
       margin-left: 1em; } }
+
+#user-bio,
+#user-latest-articles,
+#user-latest-comments {
+  display: none; }

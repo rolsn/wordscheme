@@ -149,3 +149,9 @@ p { font-size: 14px; }
         margin-left: 1em;
     }
 }
+
+#user-bio,
+#user-latest-articles,
+#user-latest-comments {
+    display: none;
+}
