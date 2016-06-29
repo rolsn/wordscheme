@@ -29,7 +29,7 @@
         {% if totalArticles > 0 %}
         <ol>
             {% for article in allArticles %}
-            <li><a href="{% url 'articles' article.id %}">{{ article.subject }}</a></li>
+            <li><a href="{% url 'articles' article.urlname %}">{{ article.subject }}</a></li>
             {% endfor %}
         {% else %}
         <p>{{ reqUser.username }} hasn't written anything yet.</p>
