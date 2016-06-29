@@ -150,7 +150,6 @@ p { font-size: 14px; }
     @include under-tablet-width(margin-left, 1em);
 }
 
-#user-bio,
 #user-latest-articles,
 #user-latest-comments {
     display: none;
