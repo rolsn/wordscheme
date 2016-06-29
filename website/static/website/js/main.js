@@ -1,5 +1,5 @@
-$("#user-nav-tabs li a").on('click', function(e) {
-    var target = $(e.currentTarget).attr("href").slice(1);
+$("#user-nav-tabs li").on('click', function(e) {
+    var targetLink = $(e.currentTarget.children[0]).attr("href").slice(1);
 
     var profile_map = {
         bio         : "#user-bio",
@@ -7,11 +7,16 @@ $("#user-nav-tabs li a").on('click', function(e) {
         comments    : "#user-latest-comments"
     }
 
-    $.each(profile_map, function(hash, id) {
-        if (hash == target) {
-            $(id).show();
+    $.each($(e.currentTarget).siblings(), function(index, el) {
+        $(el).removeClass("active");
+    });
+
+    $.each(profile_map, function(hash, elid) {
+        if (hash == targetLink) {
+            $(elid).show();
+            $(e.currentTarget).addClass("active");
         } else {
-            $(id).hide();
+            $(elid).hide();
         }
     });
 
