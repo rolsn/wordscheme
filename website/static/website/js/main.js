@@ -7,9 +7,7 @@ $("#user-nav-tabs li").on('click', function(e) {
         comments    : "#user-latest-comments"
     }
 
-    $.each($(e.currentTarget).siblings(), function(index, el) {
-        $(el).removeClass("active");
-    });
+    $(e.currentTarget).siblings().removeClass("active");
 
     $.each(profile_map, function(hash, elid) {
         if (hash == targetLink) {
