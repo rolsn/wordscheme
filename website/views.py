@@ -24,7 +24,7 @@ def format_urlname(text):
     Creates IDs for various models based on the input text.
     """
     text = re.sub('[^A-Za-z0-9 ]', '', text)
-    text = re.sub(' +', '_', text).lower().strip('_')[:40]
+    text = re.sub(' +', '-', text).lower().strip('-')[:40]
     prefix = '%06x' % randrange(16**6)
 
     return "%s-%s" % (prefix, text)
