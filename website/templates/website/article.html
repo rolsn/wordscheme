@@ -22,7 +22,7 @@
 {% endif %}
 
 <p><u>Leave feedback</u></p>
-<form method="POST" action="{% url 'new_comment' article.id %}">
+<form method="POST" action="{% url 'new_comment' article.urlname %}">
     {% csrf_token %}
     {{ comment_form }}
     <br />

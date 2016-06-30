@@ -153,12 +153,12 @@ def new_article(request):
 
 @login_required
 @require_http_methods(["POST"])
-def new_comment(request, article_id):
+def new_comment(request, urlname):
     username = request.user
     comment_text = request.POST['comment_text']
 
     try:
-        article = Articles.objects.get(id=article_id)
+        article = Articles.objects.get(urlname=urlname)
     except:
         raise Http404("Article not found.")
 
@@ -171,7 +171,7 @@ def new_comment(request, article_id):
             date            = timezone.now()
             )
 
-    return HttpResponseRedirect(reverse('articles', args=(article_id,)))
+    return HttpResponseRedirect(reverse('articles', args=(urlname,)))
 
 
 @login_required
