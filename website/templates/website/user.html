@@ -31,6 +31,7 @@
             {% for article in allArticles %}
             <li><a href="{% url 'articles' article.urlname %}">{{ article.subject }}</a></li>
             {% endfor %}
+        </ol>
         {% else %}
         <p>{{ reqUser.username }} hasn't written anything yet.</p>
         {% endif %}
@@ -38,6 +39,16 @@
 
     <div id="user-latest-comments">
         <h2>Latest public comments</h2>
+
+        {% if totalComments > 0 %}
+        <ol>
+            {% for comment in allComments %}
+            <li><a href="#">{{ comment.comment_text }}</a></li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p>{{ reqUser.username }} hasn't commented on anything yet.</p>
+        {% endif %}
     </div>
 </div>
 

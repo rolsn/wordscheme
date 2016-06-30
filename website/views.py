@@ -183,12 +183,15 @@ def profiles(request, username):
         raise Http404("User not found.")
 
     all_articles = Articles.objects.filter(user_id_id=uid)
+    all_comments = Comments.objects.filter(user_id_id=uid)
 
     return render(request, 'website/user.html', {
         "reqUser"       : user,
         "uid"           : uid,
         "allArticles"   : all_articles,
-        "totalArticles" : len(all_articles)
+        "allComments"   : all_comments,
+        "totalArticles" : len(all_articles),
+        "totalComments" : len(all_comments)
         })
 
 
