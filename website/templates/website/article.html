@@ -6,7 +6,7 @@
 
 <div class="article">
     <span class="article-title">{{ article.subject }}</span> by <a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a>
-    <div class="article-text">{{ article.article_text }}</div>
+    <div class="article-text">{{ article.article_text|linebreaksbr }}</div>
 </div>
 
 <h3>Comments</h3>
