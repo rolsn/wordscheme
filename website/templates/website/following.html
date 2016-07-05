@@ -1,0 +1,14 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<h1>Following</h1>
+<ul>
+{% for user in object_list %}
+<li>{{ user.following_id }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
