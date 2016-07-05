@@ -27,3 +27,10 @@ class Ratings(models.Model):
     user_id         = models.ForeignKey(User, on_delete=models.CASCADE)
     art_id          = models.ForeignKey(Articles, on_delete=models.CASCADE)
     rating          = models.SmallIntegerField()
+
+class UserRelationships(models.Model):
+    follower_id     = models.ForeignKey(User, on_delete=models.CASCADE)
+    following_id    = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+    date            = models.DateTimeField('Started following on')
+    relation_type   = models.SmallIntegerField('Following or blocking')
+
