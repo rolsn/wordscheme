@@ -56,7 +56,7 @@
         <h2>Following</h2>
 
         {% for user in following %}
-        <li>{{ user.following_id }}</a></li>
+        <li><a href="{% url 'profiles' user.following_id %}">{{ user.following_id }}</a></li>
         {% empty %}
         <p>{{ reqUser.username }} is not following anyone.</p>
         {% endfor %}
