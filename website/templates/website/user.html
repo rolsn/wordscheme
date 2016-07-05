@@ -58,7 +58,7 @@
         {% for user in following %}
         <li>{{ user.following_id }}</a></li>
         {% empty %}
-        <p>{{ current_user }} is not following anyone.</p>
+        <p>{{ reqUser.username }} is not following anyone.</p>
         {% endfor %}
     </div>
 </div>
