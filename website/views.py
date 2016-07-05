@@ -107,9 +107,9 @@ def main(request):
         })
 
 
-def article(request, aid):
+def article(request, urlname):
     try:
-        article = Articles.objects.get(urlname=aid)
+        article = Articles.objects.get(urlname=urlname)
     except Articles.DoesNotExist:
         raise Http404("Article not found.")
 
