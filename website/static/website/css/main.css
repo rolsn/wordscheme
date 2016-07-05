@@ -65,14 +65,23 @@ p {
   border-color: #bdbdbd;
   background-color: inherit; }
 
+.follow:before {
+  content: 'Follow'; }
+
+.following:before {
+  content: 'Following'; }
+
 .following {
+  border-color: green;
   color: green; }
 
 .following:hover {
-  border-color: green; }
+  border-color: #b40404;
+  color: #b40404; }
 
 .follow:hover {
-  border-color: #6e6e6e; }
+  border-color: green;
+  color: green; }
 
 .following-card {
   display: inline-block;
@@ -178,6 +187,9 @@ p {
 #user-latest-comments,
 #user-latest-following {
   display: none; }
+
+#user-nav-tabs {
+  margin-top: 1em; }
 
 #user-profile {
   padding: 1em; }
