@@ -5,6 +5,7 @@
 <div id="user-banner">
     <span id="user-banner-portrait"></span>
     <span id="user-banner-username">{{ reqUser.username }}</span>
+    <button class="follow" onclick="(function(el){$(el).toggleClass('following').toggleClass('follow');})(this)">Follow</button>
 </div>
 
 <br />
