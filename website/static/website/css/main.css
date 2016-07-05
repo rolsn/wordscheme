@@ -145,3 +145,6 @@ p {
 #user-latest-comments,
 #user-latest-following {
   display: none; }
+
+#user-profile {
+  padding: 1em; }
