@@ -142,5 +142,6 @@ p {
       margin-left: 1em; } }
 
 #user-latest-articles,
-#user-latest-comments {
+#user-latest-comments,
+#user-latest-following {
   display: none; }

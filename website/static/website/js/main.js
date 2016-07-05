@@ -4,7 +4,8 @@ $("#user-nav-tabs li").on('click', function(e) {
     var profile_map = {
         bio         : "#user-bio",
         articles    : "#user-latest-articles",
-        comments    : "#user-latest-comments"
+        comments    : "#user-latest-comments",
+        following   : "#user-latest-following"
     }
 
     $(e.currentTarget).siblings().removeClass("active");
