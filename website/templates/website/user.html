@@ -5,23 +5,24 @@
 <div id="user-banner">
     <span id="user-banner-portrait"></span>
     <span id="user-banner-username">{{ reqUser.username }}</span>
-    <button class="follow" onclick="(function(el){$(el).toggleClass('following').toggleClass('follow');})(this)">Follow</button>
+    <button class="follow" onclick="(function(el){$(el).toggleClass('following').toggleClass('follow');})(this)"></button>
 </div>
 
-<br />
-<ul class="nav nav-tabs" id="user-nav-tabs">
-    <li role="presentation" class="active"><a href="#bio">User Info</a></li>
-    <li role="presentation"><a href="#articles">Articles</a></li>
-    <li role="presentation"><a href="#comments">Comments</a></li>
-    <li role="presentation"><a href="#following">Following</a></li>
-</ul>
+<nav id="user-nav-tabs">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#bio">User Info</a></li>
+        <li role="presentation"><a href="#articles">Articles</a></li>
+        <li role="presentation"><a href="#comments">Comments</a></li>
+        <li role="presentation"><a href="#following">Following</a></li>
+    </ul>
+</nav>
 
 <div id="user-profile">
     <div id="user-bio">
         <h2>User Information</h2>
         <div><span class="bio-bold">Name:</span> <span>{{ reqUser.first_name }} {{ reqUser.last_name }}</span></div>
         <div><span class="bio-bold">Registered:</span> <span>{{ reqUser.date_joined }}</span></div>
-        <div><span class="bio-bold">Articles written:</span> <span>{{ allArticles|getlength }}</span></div>
+        <div><span class="bio-bold">Articles written:</span> <span>{{ allArticles|length }}</span></div>
         <div><span class="bio-bold">About me:</span> <span><i>There's nothing here...</i></span></div>
     </div>
 
@@ -54,8 +55,6 @@
     </div>
 
     <div id="user-latest-following">
-        <h2>Following</h2>
-
         {% for user in following %}
         {% include "website/following_card.html" %}
         {% empty %}
