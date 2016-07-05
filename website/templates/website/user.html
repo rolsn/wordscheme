@@ -12,6 +12,7 @@
     <li role="presentation" class="active"><a href="#bio">User Info</a></li>
     <li role="presentation"><a href="#articles">Articles</a></li>
     <li role="presentation"><a href="#comments">Comments</a></li>
+    <li role="presentation"><a href="#following">Following</a></li>
 </ul>
 
 <div id="user-profile">
@@ -49,6 +50,16 @@
         {% else %}
         <p>{{ reqUser.username }} hasn't commented on anything yet.</p>
         {% endif %}
+    </div>
+
+    <div id="user-latest-following">
+        <h2>Following</h2>
+
+        {% for user in following %}
+        <li>{{ user.following_id }}</a></li>
+        {% empty %}
+        <p>{{ current_user }} is not following anyone.</p>
+        {% endfor %}
     </div>
 </div>
 

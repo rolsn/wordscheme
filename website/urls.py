@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'new/', views.new_article, name='new_article'),
     url(r'^logout/', views.logout, name='logout'),
     url(r'user/(?P<username>[a-zA-Z0-9]+)/$', views.profiles, name='profiles'),
+    url(r'user/(?P<username>[a-zA-Z0-9]+)/following$', views.following, name='following'),
     url(r'search/', views.search, name='search'),
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
