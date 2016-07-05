@@ -56,13 +56,46 @@ p {
 .comment-text {
   padding: 0.5em; }
 
+.follow,
+.following {
+  margin: 10px;
+  padding: 3px 8px 3px 8px;
+  border: 2px solid black;
+  border-radius: 4px;
+  border-color: #bdbdbd;
+  background-color: inherit; }
+
+.following {
+  color: green; }
+
+.following:hover {
+  border-color: green; }
+
+.follow:hover {
+  border-color: #6e6e6e; }
+
+.following-card {
+  display: inline-block;
+  margin: 1em;
+  padding: 1em;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  width: 300px;
+  height: 150px; }
+  @media screen and (max-width: 767px) {
+    .following-card {
+      width: 200px; } }
+  @media screen and (max-width: 767px) {
+    .following-card {
+      height: 100px; } }
+
+.following-card a {
+  color: white;
+  background-color: black;
+  padding: 6px; }
+
 #navigation {
-  background-color: #2f2f2f;
-  /*
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0; */ }
+  background-color: #2f2f2f; }
 
 #nav-hamburger {
   margin: 10px; }

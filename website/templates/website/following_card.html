@@ -1,0 +1,7 @@
+{% block content %}
+
+<div class="following-card">
+    <a href="{% url 'profiles' user.following_id %}">{{ user.following_id }}</a>
+</div>
+
+{% endblock %}
