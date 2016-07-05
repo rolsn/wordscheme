@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from rest_framework import viewsets
 
 from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
-from website.models import Articles, Comments
+from website.models import Articles, Comments, UserRelationships
 from website.serializers import UserSerializer
 
 from random import randrange
@@ -175,6 +175,7 @@ def new_comment(request, urlname):
 
 
 @login_required
+@require_http_methods(["GET"])
 def profiles(request, username):
     try:
         user = User.objects.get(username=username)
@@ -189,13 +190,12 @@ def profiles(request, username):
         "reqUser"       : user,
         "uid"           : uid,
         "allArticles"   : all_articles,
-        "allComments"   : all_comments,
-        "totalArticles" : len(all_articles),
-        "totalComments" : len(all_comments)
+        "allComments"   : all_comments
         })
 
 
 @login_required
+@require_http_methods(["GET"])
 def search(request):
     if request.method == "POST":
         search_term = request.POST['search'];
@@ -212,3 +212,19 @@ def search(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+
+
+@login_required
+@require_http_methods(["GET"])
+def following(request, username):
+    try:
+        user = User.objects.get(username = username)
+        uid = user.id
+    except:
+        raise Http404("User not found.")
+
+    following = UserRelationships.objects.filter(follower_id=uid);
+
+    return render(request, 'website/following.html', {'object_list': following})
+
+
