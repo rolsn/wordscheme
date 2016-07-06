@@ -29,6 +29,9 @@ class Ratings(models.Model):
     rating          = models.SmallIntegerField()
 
 class UserRelationships(models.Model):
+    class Meta:
+        unique_together = (('follower_id', 'following_id'),)
+
     follower_id     = models.ForeignKey(User, on_delete=models.CASCADE)
     following_id    = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
     date            = models.DateTimeField('Started following on')
