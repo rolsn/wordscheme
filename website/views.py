@@ -16,6 +16,9 @@ from random import randrange
 import re
 
 def index(request):
+    if request.user is not None and request.user.is_active:
+        return HttpResponseRedirect(reverse('main'))
+
     return render(request, 'website/index.html', {})
 
 
