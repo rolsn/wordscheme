@@ -29,15 +29,15 @@ Very basic steps to get up and running. This is **not** a Django security guide.
 ```sql
 postgres=# create database wordscheme;
 postgres=# create user wsdb with password '<PASSWORD>' login;
-postgres=# create database wordscheme;
 postgres=# grant all on database wordscheme to wsdb;
 postgres=# \q
 ```
 
-Open `webscheme/settings.py`. Change the following:
-* Change `SECRET_KEY`.
-* Set `DATABASES['default']['PASSWORD']` to the password you set previously.
-* Keep `DEBUG=True`. Only turn this off when putting into production, otherwise static files won't be served correctly without further configuration from your web server.
+In the app root dir:
+```bash
+$ echo YOUR_DJANGO_SECRET_KEY > secret_key.txt
+$ echo YOUR_DB_PASSWORD > dbpass.txt
+```
 
 If all goes well, this will get you running with the Django development server.
 Webserver configuration is beyond the scope of this document.
