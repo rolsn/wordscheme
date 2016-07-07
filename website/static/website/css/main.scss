@@ -76,6 +76,7 @@ p { font-size: 14px; }
     border-radius: 4px;
     border-color: #bdbdbd;
     background-color: inherit;
+    width: 90px;
 }
 
 .follow:before {
@@ -94,6 +95,7 @@ p { font-size: 14px; }
     border-color: #b40404;
     color: #b40404;
 }
+.following:hover:before { content: 'Unfollow'; }
 
 .follow:hover {
     border-color: green;
