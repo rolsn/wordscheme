@@ -24,6 +24,9 @@ class Comments(models.Model):
     comment_text    = models.TextField()
 
 class Ratings(models.Model):
+    class Meta:
+        unique_together = (('user_id', 'art_id'),)
+
     user_id         = models.ForeignKey(User, on_delete=models.CASCADE)
     art_id          = models.ForeignKey(Articles, on_delete=models.CASCADE)
     rating          = models.SmallIntegerField()
