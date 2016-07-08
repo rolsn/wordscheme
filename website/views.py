@@ -120,10 +120,12 @@ def article(request, urlname):
         raise Http404("Article not found.")
 
     comments = Comments.objects.filter(art_id=article.id)
+    ratings = Ratings.objects.filter(art_id=article.id)
 
     return render(request, 'website/article.html', {
         "article"       : article,
         "comments"      : comments,
+        "ratings"       : ratings,
         "comment_form"  : CommentForm()
         })
 

@@ -6,6 +6,9 @@
 
 <div class="article">
     <span class="article-title">{{ article.subject }}</span> by <a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a>
+    {% if article.user_id == current_user %}
+    <p>Current rating: {{ ratings|length }}</p>
+    {% endif %}
     <div class="article-text">{{ article.article_text|linebreaksbr }}</div>
 </div>
 
