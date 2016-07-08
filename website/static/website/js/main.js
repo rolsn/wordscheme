@@ -20,3 +20,11 @@ $("#user-nav-tabs li").on('click', function(e) {
     });
 
 });
+
+$("#user-banner button").on('click', function(e) {
+    $(e.currentTarget).toggleClass('following').toggleClass('follow')
+})
+
+$("#article-rating").on('click', function(e) {
+    $(e.currentTarget).toggleClass('article-like').toggleClass('article-liked')
+})
