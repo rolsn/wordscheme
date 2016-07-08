@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'search/', views.search, name='search'),
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
-    url(r'ratings/(?P<pk>[0-9]+)/$', views.ratings),
+    url(r'ratings/$', views.RatingsList.as_view()),
 ]

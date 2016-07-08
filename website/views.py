@@ -7,8 +7,8 @@ from django.contrib.auth import authenticate, login as _login, logout as _logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
@@ -240,17 +240,17 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-@api_view(['GET', 'PUT'])
-def ratings(request, pk):
-    """
-    Get or update an article rating.
-    """
-
-    try:
-        rating = Ratings.objects.get(id=pk)
-    except Ratings.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == "GET":
-        ser = RatingsSerializer(rating)
+class RatingsList(APIView):
+    def get(self, request, format=None):
+        ratings = Ratings.objects.all()
+        ser = RatingsSerializer(ratings, many=True)
         return Response(ser.data)
+
+    def post(self, request, format=None):
+        ser = RatingsSerializer(data=request.data)
+
+        if ser.is_valid():
+            ser.save()
+            return Response(ser.data, status=status.HTTP_201_CREATED)
+
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
