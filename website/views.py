@@ -6,11 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as _login, logout as _logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
-from website.models import Articles, Comments, UserRelationships
-from website.serializers import UserSerializer
+from website.models import Articles, Comments, UserRelationships, Ratings
+from website.serializers import UserSerializer, RatingsSerializer
 
 from random import randrange
 import re
@@ -214,11 +217,6 @@ def search(request):
         return render(request, 'website/search.html', {})
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-
-
 @login_required
 @require_http_methods(["GET"])
 def following(request, username):
@@ -233,3 +231,26 @@ def following(request, username):
     return render(request, 'website/following.html', {'object_list': following})
 
 
+###
+# REST Framework
+###
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+@api_view(['GET', 'PUT'])
+def ratings(request, pk):
+    """
+    Get or update an article rating.
+    """
+
+    try:
+        rating = Ratings.objects.get(id=pk)
+    except Ratings.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "GET":
+        ser = RatingsSerializer(rating)
+        return Response(ser.data)
