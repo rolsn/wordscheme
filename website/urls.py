@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
     url(r'ratings/$', views.RatingsList.as_view()),
+    url(r'ratings/(?P<urlname>[a-z0-9_\-]+)/$', views.RatingDetail.as_view()),
 ]

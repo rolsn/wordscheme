@@ -246,9 +246,10 @@ class RatingsList(APIView):
     def get(self, request, format=None):
         ratings = Ratings.objects.all()
         ser = RatingsSerializer(ratings, many=True)
+
         return Response(ser.data)
 
-    def post(self, request, format=None):
+    def put(self, request, format=None):
         ser = RatingsSerializer(data=request.data)
 
         if ser.is_valid():
@@ -256,3 +257,21 @@ class RatingsList(APIView):
             return Response(ser.data, status=status.HTTP_201_CREATED)
 
         return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RatingDetail(APIView):
+    def get(self, request, urlname, format=None):
+        article = Articles.objects.get(urlname=urlname)
+        user = User.objects.get(username=request.user)
+        rating = Ratings.objects.get(art_id=article, user_id=user)
+        ser = RatingsSerializer(rating)
+
+        return Response(ser.data)
+
+    def delete(self, request, urlname, format=None):
+        user = User.objects.get(username=request.user)
+        article = Articles.objects.get(urlname=urlname)
+        rating = Ratings.objects.filter(user_id=user, art_id=article)
+        rating.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
