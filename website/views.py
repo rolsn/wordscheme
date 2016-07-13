@@ -205,7 +205,7 @@ def profiles(request, username):
 
 
 @login_required
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def search(request):
     if request.method == "POST":
         search_term = request.POST['search'];
