@@ -43,13 +43,19 @@ class UserRelationships(models.Model):
 class Guilds(models.Model):
     guild_id        = models.CharField(primary_key=True, max_length=16)
     guild_leader    = models.ForeignKey(User, on_delete=models.CASCADE)
-    guild_name      = models.CharField(max_length=64)
+    guild_name      = models.CharField(unique=True, max_length=64)
     date            = models.DateTimeField('Guild Creation Date')
 
-class GuildMembership(models.Model):
+    def __str__(self):
+        return self.guild_name
+
+class GuildMemberships(models.Model):
     class Meta:
         unique_together = (('user_id', 'guild_id'),)
 
     user_id         = models.ForeignKey(User, on_delete=models.CASCADE)
     guild_id        = models.ForeignKey(Guilds, on_delete=models.CASCADE)
     date            = models.DateTimeField('Guild Join Date')
+
+    def __str__(self):
+        return "%s" % self.guild_id.guild_name
