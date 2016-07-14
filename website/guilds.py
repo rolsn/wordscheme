@@ -33,6 +33,13 @@ def list_guild_memberships(username):
     except Exception as e:
         raise e
 
+def list_guild_leaderships(username):
+    """List all guilds led by the given username."""
+    try:
+        user = User.objects.get(username=username)
+        return Guilds.objects.filter(guild_leader=user)
+    except Exception as e:
+        raise e
 
 def list_members(guild):
     """List all members of a given guild."""
