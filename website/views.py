@@ -225,13 +225,23 @@ def following(request, username):
     try:
         user = User.objects.get(username = username)
         uid = user.id
-    except:
+    except User.DoesNotExist:
         raise Http404("User not found.")
 
     following = UserRelationships.objects.filter(follower_id=uid);
 
     return render(request, 'website/following.html', {'object_list': following})
 
+
+@login_required
+@require_http_methods(["GET"])
+def guilds(request):
+    try:
+        user = User.objects.get(username=request.user)
+    except User.DoesNotExist:
+        raise Http404("User not found.")
+
+    return render(request, 'website/guilds.html', {})
 
 ###
 # REST Framework

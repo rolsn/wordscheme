@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'user/(?P<username>[a-zA-Z0-9]+)/$', views.profiles, name='profiles'),
     url(r'user/(?P<username>[a-zA-Z0-9]+)/following$', views.following, name='following'),
     url(r'search/', views.search, name='search'),
+    url(r'guilds/', views.guilds, name='guilds'),
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
     url(r'ratings/$', views.RatingsList.as_view()),
