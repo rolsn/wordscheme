@@ -243,7 +243,7 @@ def guilds(request):
     except User.DoesNotExist:
         raise Http404("User not found.")
 
-    return render(request, 'website/guilds.html', {
+    return render(request, 'website/guild_list.html', {
         'memberships'   : memberships,
         'leadership'    : leadership
         })
