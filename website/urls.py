@@ -7,7 +7,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 
-urlpatterns = [
+website_views = [
     url(r'^$', views.index, name='index'),
     url(r'register/', views.new_registration, name='register'),
     url(r'login/', views.login, name='login'),
@@ -20,8 +20,13 @@ urlpatterns = [
     url(r'user/(?P<username>[a-zA-Z0-9]+)/following$', views.following, name='following'),
     url(r'search/', views.search, name='search'),
     url(r'guilds/', views.guilds, name='guilds'),
+]
+
+restframework = [
     url(r'api/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls')),
     url(r'ratings/$', views.RatingsList.as_view()),
     url(r'ratings/(?P<urlname>[a-z0-9_\-]+)/$', views.RatingDetail.as_view()),
 ]
+
+urlpatterns = website_views + restframework
