@@ -11,6 +11,27 @@
             <li role="presentation"><a href="#leader">Leader</a></li>
         </ul>
     </nav>   
+
+    <div id="guilds-member-of">
+        <br />
+        <h3>Member of</h3>
+        <ul>
+            {% for guild in memberships %}
+            <li>{{ guild.guild_id }}</li>
+            {% empty %}
+            <li>You have no guild memberships.</li>
+            {% endfor %}
+        </ul>
+        <br />
+        <h3>Leader of</h3>
+        <ul>
+            {% for guild in leadership %}
+            <li>{{ guild.guild_name }}</li>
+            {% empty %}
+            <li>You do not lead any guilds.</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% endblock %}

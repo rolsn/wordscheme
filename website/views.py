@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
 from website.models import Articles, Comments, UserRelationships, Ratings
 from website.serializers import UserSerializer, RatingsSerializer
+from website.guilds import *
 
 from random import randrange
 import re
@@ -237,11 +238,15 @@ def following(request, username):
 @require_http_methods(["GET"])
 def guilds(request):
     try:
-        user = User.objects.get(username=request.user)
+        memberships = list_guild_memberships(request.user)
+        leadership = list_guild_leaderships(request.user)
     except User.DoesNotExist:
         raise Http404("User not found.")
 
-    return render(request, 'website/guilds.html', {})
+    return render(request, 'website/guilds.html', {
+        'memberships'   : memberships,
+        'leadership'    : leadership
+        })
 
 ###
 # REST Framework
