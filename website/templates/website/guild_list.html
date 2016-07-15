@@ -9,13 +9,13 @@
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#member">Member</a></li>
             <li role="presentation"><a href="#leader">Leader</a></li>
+            <li role="presentation"><a href="#invites">Invites</a></li>
         </ul>
     </nav>   
 
     <div id="guilds-listing">
         <br />
         <div id="guilds-member">
-            <h3>Member of</h3>
             <ul>
                 {% for guild in memberships %}
                 <li><a href="{% url 'guild_info' guild.guild_id.id %}">{{ guild.guild_id }}</a></li>
@@ -25,12 +25,20 @@
             </ul>
         </div>
         <div id="guilds-leader">
-            <h3>Leader of</h3>
             <ul>
                 {% for guild in leadership %}
                 <li><a href="{% url 'guild_edit' guild.id %}">{{ guild.name }}</a></li>
                 {% empty %}
                 <li>You do not lead any guilds.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="guilds-invites">
+            <ul>
+                {% for invite in invites %}
+                <li>{{ invite }}</li>
+                {% empty %}
+                <li>You have no guild invites.</li>
                 {% endfor %}
             </ul>
         </div>

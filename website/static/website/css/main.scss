@@ -135,7 +135,8 @@ p { font-size: 14px; }
     padding: 6px;
 }
 
-#guilds-leader { display: none; }
+#guilds-leader,
+#guilds-invites { display: none; }
 
 #navigation {
     background-color: $nav-bg-color;

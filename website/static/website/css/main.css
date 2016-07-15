@@ -117,7 +117,8 @@ p {
   background-color: black;
   padding: 6px; }
 
-#guilds-leader {
+#guilds-leader,
+#guilds-invites {
   display: none; }
 
 #navigation {

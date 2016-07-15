@@ -7,7 +7,8 @@ $(".sitenav-tabs li").on('click', function(e) {
         comments    : "#user-latest-comments",
         following   : "#user-latest-following",
         leader      : "#guilds-leader",
-        member      : "#guilds-member"
+        member      : "#guilds-member",
+        invites     : "#guilds-invites"
     }
 
     $(e.currentTarget).siblings().removeClass("active");
