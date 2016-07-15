@@ -21,8 +21,9 @@ website_views = [
     url(r'search/', views.search, name='search'),
     url(r'guilds/$', views.guild_list, name='guild_list'),
     url(r'guilds/create/$', views.guild_create, name='guild_create'),
-    url(r'guilds/(?P<guild_id>[a-f0-9]+)/join/$', views.guild_info, name='guild_join'),
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/$', views.guild_info, name='guild_info'),
+    url(r'guilds/(?P<guild_id>[a-f0-9]+)/join/$', views.guild_join, name='guild_join'),
+    url(r'guilds/(?P<guild_id>[a-f0-9]+)/leave/$', views.guild_leave, name='guild_leave'),
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/edit/$', views.guild_edit, name='guild_edit'),
 ]
 

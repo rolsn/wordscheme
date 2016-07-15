@@ -302,6 +302,28 @@ def guild_create(request):
             return HttpResponse("Error creating guild.")
 
 
+@login_required
+@require_http_methods(["GET"])
+def guild_join(request, guild_id):
+    try:
+        join_guild(request.user, guild_id)
+    except:
+        return HttpResponse("Error joining guild.")
+
+    return HttpResponseRedirect(reverse('guild_info', args=(guild_id,)))
+
+
+@login_required
+@require_http_methods(["GET"])
+def guild_leave(request, guild_id):
+    try:
+        delete_user_from_guild(request.user, guild_id)
+    except Exception as e:
+        return HttpResponse(e)
+
+    return HttpResponseRedirect(reverse('guild_info', args=(guild_id,)))
+
+
 ###
 # REST Framework
 ###
