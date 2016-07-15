@@ -6,6 +6,7 @@
 <p>Leader: {{ guild.leader }}</p>
 <p>Founded: {{ guild.date }}</p>
 <p>Description: {{ guild.description }}</p>
+<p>Membership is <b>public.</b> <a href="{% url "guild_join" guild.id %}">Join guild.</a></p>
 <h4>Members ({{ members|length }})</h4>
 {% for member in members %}
 <li>{{ member.user_id }}</li>
