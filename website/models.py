@@ -48,7 +48,7 @@ class Guilds(models.Model):
     date                = models.DateTimeField('Guild Creation Date')
 
     def __str__(self):
-        return self.guild_name
+        return self.name
 
 class GuildMemberships(models.Model):
     class Meta:
@@ -59,4 +59,4 @@ class GuildMemberships(models.Model):
     date            = models.DateTimeField('Guild Join Date')
 
     def __str__(self):
-        return "%s: %s" % (self.guild_id.guild_name, self.user_id)
+        return "%s: %s" % (self.guild_id.name, self.user_id)
