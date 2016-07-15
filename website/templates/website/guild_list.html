@@ -5,32 +5,35 @@
 <div id="guilds">
     <p>Here you can manage your guild memberships and <a href="#">form new guilds.</a></p>
     <br />
-    <nav id="guilds-nav-tabs">
+    <nav id="guilds-nav-tabs" class="sitenav-tabs">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#member">Member</a></li>
             <li role="presentation"><a href="#leader">Leader</a></li>
         </ul>
     </nav>   
 
-    <div id="guilds-member-of">
+    <div id="guilds-listing">
         <br />
-        <h3>Member of</h3>
-        <ul>
-            {% for guild in memberships %}
-            <li>{{ guild.guild_id }}</li>
-            {% empty %}
-            <li>You have no guild memberships.</li>
-            {% endfor %}
-        </ul>
-        <br />
-        <h3>Leader of</h3>
-        <ul>
-            {% for guild in leadership %}
-            <li>{{ guild.guild_name }}</li>
-            {% empty %}
-            <li>You do not lead any guilds.</li>
-            {% endfor %}
-        </ul>
+        <div id="guilds-member">
+            <h3>Member of</h3>
+            <ul>
+                {% for guild in memberships %}
+                <li>{{ guild.guild_id }}</li>
+                {% empty %}
+                <li>You have no guild memberships.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="guilds-leader">
+            <h3>Leader of</h3>
+            <ul>
+                {% for guild in leadership %}
+                <li>{{ guild.guild_name }}</li>
+                {% empty %}
+                <li>You do not lead any guilds.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 

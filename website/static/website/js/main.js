@@ -1,11 +1,13 @@
-$("#user-nav-tabs li").on('click', function(e) {
+$(".sitenav-tabs li").on('click', function(e) {
     var targetLink = $(e.currentTarget.children[0]).attr("href").slice(1);
 
     var profile_map = {
         bio         : "#user-bio",
         articles    : "#user-latest-articles",
         comments    : "#user-latest-comments",
-        following   : "#user-latest-following"
+        following   : "#user-latest-following",
+        leader      : "#guilds-leader",
+        member      : "#guilds-member"
     }
 
     $(e.currentTarget).siblings().removeClass("active");
