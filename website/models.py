@@ -44,7 +44,7 @@ class Guilds(models.Model):
     id            = models.CharField(primary_key=True, max_length=16)
     leader        = models.ForeignKey(User, on_delete=models.CASCADE)
     name          = models.CharField(unique=True, max_length=64)
-    description   = models.CharField(max_length=256)
+    description   = models.CharField(blank=True, max_length=256)
     date                = models.DateTimeField('Guild Creation Date')
 
     def __str__(self):
