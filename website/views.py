@@ -11,7 +11,7 @@ from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm
+from website.forms import RegistrationForm, LoginForm, ArticleForm, CommentForm, GuildCreateForm
 from website.models import Articles, Comments, UserRelationships, Ratings
 from website.serializers import UserSerializer, RatingsSerializer
 from website.guilds import *
@@ -274,6 +274,29 @@ def guild_edit(request, guild_id):
         return Http404("Guild not found.")
 
     return HttpResponse("Editing guild %s" % guild.name) if request.user == guild_leader(guild_id) else HttpResponse("You are not the leader of this guild.")
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def guild_create(request):
+    if request.method == "GET":
+        return render(request, 'website/guild_create.html', {'form': GuildCreateForm().as_ul()})
+
+    if request.method == "POST":
+        guildForm = GuildCreateForm(request.POST)
+
+        if not guildForm.is_valid():
+            return render(request, 'website/guild_create.html', {'form': GuildCreateForm().as_ul(), 'error': guildForm.errors})
+
+        try:
+            name = request.POST['name']
+            desc = "" if request.POST['description'] == "" else request.POST['description']
+
+            guild_id = create_guild(request.user, name, description=desc)
+            return HttpResponseRedirect(reverse('guild_info', args=(guild_id,)))
+        except Exception as e:
+            print e
+            return HttpResponse("Error creating guild.")
 
 
 ###
