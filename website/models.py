@@ -41,10 +41,10 @@ class UserRelationships(models.Model):
     relation_type   = models.SmallIntegerField('Following or blocking')
 
 class Guilds(models.Model):
-    guild_id            = models.CharField(primary_key=True, max_length=16)
-    guild_leader        = models.ForeignKey(User, on_delete=models.CASCADE)
-    guild_name          = models.CharField(unique=True, max_length=64)
-    guild_description   = models.CharField(max_length=256)
+    id            = models.CharField(primary_key=True, max_length=16)
+    leader        = models.ForeignKey(User, on_delete=models.CASCADE)
+    name          = models.CharField(unique=True, max_length=64)
+    description   = models.CharField(max_length=256)
     date                = models.DateTimeField('Guild Creation Date')
 
     def __str__(self):
