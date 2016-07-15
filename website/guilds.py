@@ -62,12 +62,36 @@ def guild_leader(gid):
     except Exception as e:
         raise e
 
-def add_user_to_guild(user, guild):
-    """Adds a user to a given guild."""
-    pass
+def join_guild(user, guild_id):
+    """Adds a user to a given guild ID. Returns the new membership instance if successful."""
+    try:
+        user = User.objects.get(username=user)
+        guild = Guilds.objects.get(id=guild_id)
+        membership = GuildMemberships(guild_id=guild, user_id=user, date=timezone.now())
+        membership.save()
 
-def delete_user_from_guild(user, guild):
+        return membership
+    except Exception as e:
+        raise e
+
+def delete_user_from_guild(username, guild_id):
     """Deletes a user from a given guild."""
+    try:
+        user = User.objects.get(username=username)
+        guild = Guilds.objects.get(id=guild_id)
+        membership = GuildMemberships.objects.filter(guild_id=guild, user_id=user)
+    except Exception as e:
+        raise e
+
+    if guild_leader(guild_id) != username:
+        membership.delete()
+        return True
+    else:
+        raise Exception("Cannot delete the current guild leader.")
+
+def promote_to_leader(user, guild):
+    """Replaces the old guild leader with the given user.
+    The old leader retains guild membership."""
     pass
 
 def delete_guild(guild):
