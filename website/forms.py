@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User
 
-from models import Articles, Comments
+from models import Articles, Comments, Guilds
 
 class RegistrationForm(ModelForm):
     class Meta:
@@ -29,3 +29,8 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comments
         fields = ['comment_text']
+
+class GuildCreateForm(ModelForm):
+    class Meta:
+        model = Guilds
+        fields = ['name', 'description']
