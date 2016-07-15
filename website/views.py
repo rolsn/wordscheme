@@ -255,12 +255,15 @@ def guild_info(request, guild_id):
     try:
         guild = Guilds.objects.get(id=guild_id)
         members = list_members(guild_id)
+        user = User.objects.get(username=request.user)
+        userInGuild = True if GuildMemberships.objects.filter(user_id=user, guild_id=guild) else False
     except Guilds.DoesNotExist:
         return Http404("Guild not found.")
 
     return render(request, 'website/guild_info.html', {
-        'guild'     : guild,
-        'members'   : members
+        'guild'         : guild,
+        'members'       : members,
+        'userInGuild'   : userInGuild
         })
 
 
