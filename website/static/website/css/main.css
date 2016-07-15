@@ -117,6 +117,9 @@ p {
   background-color: black;
   padding: 6px; }
 
+#guilds-leader {
+  display: none; }
+
 #navigation {
   background-color: #2f2f2f; }
 
