@@ -11,11 +11,17 @@ def generate_guild_id():
 
     return gid if len(Guilds.objects.filter(id=gid)) == 0 else generate_guild_id()
 
-def create_guild(leader, name):
-    """Creates a new guild and adds the leader as a member."""
+def create_guild(leader, name, description=""):
+    """Creates a new guild and adds the leader as a member.
+    Returns the new guild's ID if successful."""
     try:
         user = User.objects.get(username=leader)
-        guild = Guilds(id=generate_guild_id(), leader=user, name=name, date=timezone.now())
+        guild = Guilds(id=generate_guild_id(),
+                leader=user,
+                name=name,
+                description=description,
+                date=timezone.now()
+                )
         guild.save()
 
         membership = GuildMemberships(user_id=user, guild_id=guild, date=timezone.now())
