@@ -48,7 +48,7 @@ def list_members(guild_id):
     except Exception as e:
         raise e
 
-def leader(gid):
+def guild_leader(gid):
     """Returns the leader of a given guild."""
     try:
         guild = Guilds.objects.get(id=gid)

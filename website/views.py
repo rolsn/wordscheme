@@ -263,6 +263,19 @@ def guild_info(request, guild_id):
         'members'   : members
         })
 
+
+@login_required
+@require_http_methods(["GET"])
+def guild_edit(request, guild_id):
+    try:
+        guild = Guilds.objects.get(id=guild_id)
+        user = User.objects.get(username=request.user)
+    except Guilds.DoesNotExist:
+        return Http404("Guild not found.")
+
+    return HttpResponse("Editing guild %s" % guild.name) if request.user == guild_leader(guild_id) else HttpResponse("You are not the leader of this guild.")
+
+
 ###
 # REST Framework
 ###

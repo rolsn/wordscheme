@@ -21,6 +21,7 @@ website_views = [
     url(r'search/', views.search, name='search'),
     url(r'guilds/$', views.guild_list, name='guild_list'),
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/$', views.guild_info, name='guild_info'),
+    url(r'guilds/(?P<guild_id>[a-f0-9]+)/edit$', views.guild_edit, name='guild_edit'),
 ]
 
 restframework = [

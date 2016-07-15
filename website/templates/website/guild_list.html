@@ -28,7 +28,7 @@
             <h3>Leader of</h3>
             <ul>
                 {% for guild in leadership %}
-                <li>{{ guild.guild_name }}</li>
+                <li><a href="{% url 'guild_edit' guild.id %}">{{ guild.name }}</a></li>
                 {% empty %}
                 <li>You do not lead any guilds.</li>
                 {% endfor %}
