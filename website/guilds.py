@@ -6,8 +6,8 @@ from random import randrange
 from website.models import Guilds, GuildMemberships
 
 def generate_guild_id():
-    """Generate an 8-byte hex id to be used as a guild's primary key."""
-    gid = '%0x' % randrange(16**8)
+    """Generate an 8-byte integer to be used as a guild's primary key."""
+    gid = randrange(10**7, 10**8-1)
 
     return gid if len(Guilds.objects.filter(guild_id=gid)) == 0 else generate_guild_id()
 
@@ -41,10 +41,10 @@ def list_guild_leaderships(username):
     except Exception as e:
         raise e
 
-def list_members(guild):
+def list_members(guild_id):
     """List all members of a given guild."""
     try:
-        guild = Guilds.objects.get(guild_name=guild)
+        guild = Guilds.objects.get(guild_id=guild_id)
         return GuildMemberships.objects.filter(guild_id=guild)
     except Exception as e:
         raise e
