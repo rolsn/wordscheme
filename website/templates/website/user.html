@@ -12,7 +12,7 @@
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#bio">User Info</a></li>
         <li role="presentation"><a href="#articles">Articles</a></li>
-        <li role="presentation"><a href="#comments">Comments</a></li>
+        <li role="presentation"><a href="#guilds">Guilds</a></li>
         <li role="presentation"><a href="#following">Following</a></li>
     </ul>
 </nav>
@@ -40,17 +40,17 @@
         {% endif %}
     </div>
 
-    <div id="user-latest-comments">
-        <h2>Latest public comments</h2>
+    <div id="user-guilds">
+        <h2>Member of:</h2>
 
-        {% if allComments|getlength > 0 %}
+        {% if guilds|length > 0 %}
         <ol>
-            {% for comment in allComments %}
-            <li><a href="#">{{ comment.comment_text }}</a></li>
+            {% for guild in guilds %}
+            <li><a href="{% url 'guild_info' guild.guild_id.id %}">{{ guild.guild_id.name }}</a></li>
             {% endfor %}
         </ol>
         {% else %}
-        <p>{{ reqUser.username }} hasn't commented on anything yet.</p>
+        <p>{{ reqUser.username }} is not a member of any guild.</p>
         {% endif %}
     </div>
 

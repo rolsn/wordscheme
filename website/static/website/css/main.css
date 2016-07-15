@@ -202,8 +202,8 @@ p {
       margin-left: 1em; } }
 
 #user-latest-articles,
-#user-latest-comments,
-#user-latest-following {
+#user-latest-following,
+#user-guilds {
   display: none; }
 
 #user-nav-tabs {

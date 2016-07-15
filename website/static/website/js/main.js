@@ -4,7 +4,7 @@ $(".sitenav-tabs li").on('click', function(e) {
     var profile_map = {
         bio         : "#user-bio",
         articles    : "#user-latest-articles",
-        comments    : "#user-latest-comments",
+        guilds      : "#user-guilds",
         following   : "#user-latest-following",
         leader      : "#guilds-leader",
         member      : "#guilds-member",
