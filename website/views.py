@@ -244,8 +244,8 @@ def guild_list(request):
         raise Http404("User not found.")
 
     return render(request, 'website/guild_list.html', {
-        'memberships'   : memberships,
-        'leadership'    : leadership
+        'memberships'   : memberships.order_by('-date'),
+        'leadership'    : leadership.order_by('-date')
         })
 
 
