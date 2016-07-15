@@ -236,7 +236,7 @@ def following(request, username):
 
 @login_required
 @require_http_methods(["GET"])
-def guilds(request):
+def guild_list(request):
     try:
         memberships = list_guild_memberships(request.user)
         leadership = list_guild_leaderships(request.user)
@@ -246,6 +246,21 @@ def guilds(request):
     return render(request, 'website/guild_list.html', {
         'memberships'   : memberships,
         'leadership'    : leadership
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def guild_info(request, guild_id):
+    try:
+        guild = Guilds.objects.get(id=guild_id)
+        members = list_members(guild_id)
+    except Guilds.DoesNotExist:
+        return Http404("Guild not found.")
+
+    return render(request, 'website/guild_info.html', {
+        'guild'     : guild,
+        'members'   : members
         })
 
 ###
