@@ -6,10 +6,10 @@
 <p>Leader: {{ guild.leader }}</p>
 <p>Founded: {{ guild.date }}</p>
 <p>Description: {{ guild.description }}</p>
-<p>Membership is <b>public.</b> <a href="{% url "guild_join" guild.id %}">Join guild.</a></p>
+<p>Membership is <b>public.</b> {% if userInGuild %}<a href="{% url 'guild_leave' guild.id %}">Leave guild.</a>{% else %}<a href="{% url 'guild_join' guild.id %}">Join guild.</a>{% endif %}</p>
 <h4>Members ({{ members|length }})</h4>
 {% for member in members %}
-<li>{{ member.user_id }}</li>
+<li><a href="{% url 'profiles' member.user_id %}">{{ member.user_id }}</a></li>
 {% empty %}
 <li>No members in this guild. How did that happen?</li>
 {% endfor %}
