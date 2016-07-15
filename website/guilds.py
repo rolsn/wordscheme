@@ -27,7 +27,7 @@ def create_guild(leader, name, description=""):
         membership = GuildMemberships(user_id=user, guild_id=guild, date=timezone.now())
         membership.save()
 
-        return True
+        return guild.id
     except Exception as e:
         raise e
 
