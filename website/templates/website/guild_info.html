@@ -1,0 +1,16 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<h2>{{ guild.name }}</h2>
+<p>Leader: {{ guild.leader }}</p>
+<p>Founded: {{ guild.date }}</p>
+<p>Description: {{ guild.description }}</p>
+<h4>Members ({{ members|length }})</h4>
+{% for member in members %}
+<li>{{ member.user_id }}</li>
+{% empty %}
+<li>No members in this guild. How did that happen?</li>
+{% endfor %}
+
+{% endblock %}
