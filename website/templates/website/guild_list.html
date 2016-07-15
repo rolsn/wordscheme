@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div id="guilds">
+<div id="guild-list">
     <p>Here you can manage your guild memberships and <a href="#">form new guilds.</a></p>
     <br />
     <nav id="guilds-nav-tabs" class="sitenav-tabs">
@@ -18,7 +18,7 @@
             <h3>Member of</h3>
             <ul>
                 {% for guild in memberships %}
-                <li>{{ guild.guild_id }}</li>
+                <li><a href="{% url 'guild_info' guild.guild_id.guild_id %}">{{ guild.guild_id }}</a></li>
                 {% empty %}
                 <li>You have no guild memberships.</li>
                 {% endfor %}
