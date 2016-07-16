@@ -114,7 +114,7 @@ def promote_to_leader(user, guild_id):
     The old leader retains guild membership."""
     pass
 
-def delete_guild(guild_id):
+def disband_guild(guild_id):
     """Disbands a guild."""
     try:
         guild = Guilds.objects.get(id=guild_id)

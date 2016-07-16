@@ -328,6 +328,19 @@ def guild_leave(request, guild_id):
     return HttpResponseRedirect(reverse('guild_info', args=(guild_id,)))
 
 
+@login_required
+@require_http_methods(["GET"])
+def guild_disband(request, guild_id):
+    try:
+        if request.user == guild_leader(guild_id):
+            disband_guild(guild_id)
+            return HttpResponseRedirect(reverse('guild_list'))
+        else:
+            return HttpResponse("Permission denied. You are not the guild leader.")
+    except Exception as e:
+        return HttpResponse(e)
+
+
 ###
 # REST Framework
 ###

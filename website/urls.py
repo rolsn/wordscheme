@@ -25,6 +25,7 @@ website_views = [
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/join/$', views.guild_join, name='guild_join'),
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/leave/$', views.guild_leave, name='guild_leave'),
     url(r'guilds/(?P<guild_id>[a-f0-9]+)/edit/$', views.guild_edit, name='guild_edit'),
+    url(r'guilds/(?P<guild_id>[a-f0-9]+)/edit/disband$', views.guild_disband, name='guild_disband'),
 ]
 
 restframework = [
