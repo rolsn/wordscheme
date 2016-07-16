@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>{{ guild.name }}</h2>
+<h2 style="display:inline-block">{{ guild.name }}</h2> {% if current_user == guild.leader %}<a href="{% url 'guild_edit' guild.id %}">(edit)</a>{% endif %}
 <p>Leader: {{ guild.leader }}</p>
 <p>Founded: {{ guild.date }}</p>
 <p>Description: {{ guild.description }}</p>
