@@ -258,7 +258,7 @@ def guild_info(request, guild_id):
         user = User.objects.get(username=request.user)
         userInGuild = True if GuildMemberships.objects.filter(user_id=user, guild_id=guild) else False
     except Guilds.DoesNotExist:
-        return Http404("Guild not found.")
+        raise Http404("Guild not found.")
 
     return render(request, 'website/guild_info.html', {
         'guild'         : guild,
@@ -274,7 +274,7 @@ def guild_edit(request, guild_id):
         guild = Guilds.objects.get(id=guild_id)
         user = User.objects.get(username=request.user)
     except Guilds.DoesNotExist:
-        return Http404("Guild not found.")
+        raise Http404("Guild not found.")
 
     return HttpResponse("Editing guild %s" % guild.name) if request.user == guild_leader(guild_id) else HttpResponse("You are not the leader of this guild.")
 
@@ -318,6 +318,10 @@ def guild_join(request, guild_id):
 def guild_leave(request, guild_id):
     try:
         delete_user_from_guild(request.user, guild_id)
+    except UserIsGuildLeaderError:
+        return HttpResponse("Cannot delete guild leader.")
+    except LastUserInGuildError:
+        return HttpResponse("This is the last user in the guild.")
     except Exception as e:
         return HttpResponse(e)
 
