@@ -100,17 +100,31 @@ def delete_user_from_guild(username, guild_id):
     except Exception as e:
         raise e
 
+    if len(GuildMemberships.objects.filter(guild_id=guild)) == 1:
+        raise LastUserInGuildError
+
     if guild_leader(guild_id) != username:
         membership.delete()
         return True
     else:
-        raise Exception("Cannot delete the current guild leader.")
+        raise UserIsGuildLeaderError
 
-def promote_to_leader(user, guild):
+def promote_to_leader(user, guild_id):
     """Replaces the old guild leader with the given user.
     The old leader retains guild membership."""
     pass
 
-def delete_guild(guild):
-    """Deletes a guild."""
-    pass
+def delete_guild(guild_id):
+    """Disbands a guild."""
+    try:
+        guild = Guilds.objects.get(id=guild_id)
+        members = GuildMemberships.objects.filter(guild_id=guild)
+
+        for i in members:
+            i.delete()
+
+        guild.delete()
+
+        return True
+    except Exception as e:
+        raise e
