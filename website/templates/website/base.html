@@ -18,6 +18,12 @@
         {% include "website/nav.html" %}
 
         <div class="app-content-main">
+            <div id="app-errors">
+                {% for error in app_errors %}
+                <p class="app-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
             {% block content %}
             {% endblock %}
         </div>
