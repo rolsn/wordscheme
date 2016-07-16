@@ -5,6 +5,23 @@ from random import randrange
 
 from website.models import Guilds, GuildMemberships
 
+class GuildException(Exception):
+    def __init__(self, *args, **kwargs):
+        super(GuildException, self).__init__(*args, **kwargs)
+
+class LastUserInGuildError(GuildException):
+    def __init__(self, *args, **kwargs):
+        super(LastUserInGuildError, self).__init__(*args, **kwargs)
+
+class UserIsGuildLeaderError(GuildException):
+    def __init__(self, *args, **kwargs):
+        super(UserIsGuildLeaderError, self).__init__(*args, **kwargs)
+
+class PermissionDeniedError(GuildException):
+    def __init__(self, *args, **kwargs):
+        super(PermissionDeniedError, self).__init__(*args, **kwargs)
+
+
 def generate_guild_id():
     """Generate an 8-byte integer to be used as a guild's primary key."""
     gid = randrange(10**7, 10**8-1)
