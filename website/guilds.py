@@ -75,7 +75,7 @@ def guild_leader(gid):
     """Returns the leader of a given guild."""
     try:
         guild = Guilds.objects.get(id=gid)
-        return guild.leader
+        return str(guild.leader)
     except Exception as e:
         raise e
 
