@@ -75,7 +75,7 @@ def guild_leader(gid):
     """Returns the leader of a given guild."""
     try:
         guild = Guilds.objects.get(id=gid)
-        return str(guild.leader)
+        return guild.leader
     except Exception as e:
         raise e
 
@@ -103,7 +103,7 @@ def delete_user_from_guild(username, guild_id):
     if len(GuildMemberships.objects.filter(guild_id=guild)) == 1:
         raise LastUserInGuildError
 
-    if guild_leader(guild_id) != username:
+    if str(guild_leader(guild_id)) != str(username):
         membership.delete()
         return True
     else:
