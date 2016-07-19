@@ -40,6 +40,23 @@ class Articles(models.Model):
     def preview(self):
         return "%s" % self.article_text[:200]
 
+    def can_view_article(self, user):
+        if user == self.user_id:
+            return True
+        elif user in self.allowed_users.all():
+            return True
+
+        user_guild_ids = []
+        for guild in user.guildmemberships_set.all():
+            user_guild_ids.append(guild.guild_id.id)
+
+        article_allowed_guild_ids = []
+        for guild in self.allowed_guilds.all():
+            article_allowed_guild_ids.append(guild.id)
+
+        return bool(set(user_guild_ids) & set(article_allowed_guild_ids))
+
+
 class Comments(models.Model):
     user_id         = models.ForeignKey(User, on_delete=models.CASCADE)
     art_id          = models.ForeignKey(Articles, on_delete=models.CASCADE)
