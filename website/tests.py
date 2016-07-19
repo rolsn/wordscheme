@@ -4,8 +4,42 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.db.models.query import QuerySet
 
-from website.models import Guilds, GuildMemberships
+from website.models import Articles, Guilds, GuildMemberships
+from website.views import format_urlname
 from website.guilds import *
+
+class ModelTests(TestCase):
+    def setUp(self):
+        self.uid = 'testuser'
+        User.objects.create_user(self.uid, password='testpass')
+        User.objects.create_user('testuser2', password='testpass')
+        self.user = User.objects.get(username=self.uid)
+        Articles.objects.create(
+                user_id         = self.user,
+                date            = timezone.now(),
+                article_text    = "Lorem ipsum",
+                subject         = "Test Subject 01",
+                urlname         = format_urlname("Test Subject 01")
+                )
+        create_guild(self.user, "Test Guild", "A test guild for the rest of us")
+        self.guild = Guilds.objects.get(name="Test Guild")
+
+    def test_can_view_article(self):
+        article = Articles.objects.get(id=1)
+        user2 = User.objects.get(username='testuser2')
+
+        self.assertTrue(article.can_view_article(self.user))
+        self.assertFalse(article.can_view_article(user2))
+        
+        article.allowed_users.add(user2)
+        self.assertTrue(article.can_view_article(user2))
+
+        article.allowed_users.remove(user2)
+        self.assertFalse(article.can_view_article(user2))
+        join_guild(user2, self.guild.id)
+        article.allowed_guilds.add(self.guild)
+        self.assertTrue(article.can_view_article(user2))
+
 
 class GuildModuleTests(TestCase):
     def setUp(self):
