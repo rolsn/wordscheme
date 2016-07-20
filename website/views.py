@@ -117,8 +117,12 @@ def main(request):
 def article(request, urlname):
     try:
         article = Articles.objects.get(urlname=urlname)
+        user = User.objects.get(username=request.user)
     except Articles.DoesNotExist:
         raise Http404("Article not found.")
+
+    if not article.can_view_article(user):
+        return HttpResponse("Permission denied.")
 
     comments = Comments.objects.filter(art_id=article.id)
     ratings = Ratings.objects.filter(art_id=article.id)
