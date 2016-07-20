@@ -136,6 +136,41 @@ def article(request, urlname):
 
 
 @login_required
+def article_edit(request, urlname):
+    try:
+        article = Articles.objects.get(urlname=urlname)
+    except Articles.DoesNotExist:
+        raise Http404("Article not found.")
+
+    if request.user != article.user_id:
+        return HttpResponse("Permission denied.")
+
+    if request.method == 'GET':
+        form = ArticleForm(initial={
+            "subject"       : article.subject,
+            "article_text"  : article.article_text,
+            "public"        : article.public,
+            })
+
+        return render(request, 'website/new_article.html', {
+            "form"  : form.as_ul(),
+            })
+
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+
+        if form.is_valid():
+            article.subject = request.POST['subject']
+            article.article_text = request.POST['article_text']
+            article.public = request.POST['public']
+            article.save()
+
+            return HttpResponseRedirect(reverse('articles', args=(urlname,)))
+        else:
+            return HttpResponse("Invalid form data.")
+
+
+@login_required
 def new_article(request):
     username = request.user
 
