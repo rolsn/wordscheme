@@ -148,20 +148,25 @@ def new_article(request):
             })
 
     if request.method == 'POST':
-        article_text = request.POST['article_text']
-        subject = request.POST['subject']
+        article_form = ArticleForm(request.POST)
 
-        user = User.objects.get(username=username)
+        if article_form.is_valid():
+            article_text = request.POST['article_text']
+            subject = request.POST['subject']
 
-        article = Articles.objects.create(
-                user_id         = user,
-                date            = timezone.now(),
-                article_text    = article_text,
-                subject         = subject,
-                urlname         = format_urlname(subject)
-                )
+            user = User.objects.get(username=username)
 
-        return HttpResponseRedirect(reverse('main'))
+            article = Articles.objects.create(
+                    user_id         = user,
+                    date            = timezone.now(),
+                    article_text    = article_text,
+                    subject         = subject,
+                    urlname         = format_urlname(subject),
+                    )
+
+            return HttpResponseRedirect(reverse('main'))
+        else:
+            return HttpResponse("Invalid form data.")
 
 
 @login_required
