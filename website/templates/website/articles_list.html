@@ -1,5 +1,12 @@
 {% extends "website/base.html" %}
 
 {% block content %}
-
+{% if articles %}
+<p>Displaying 1-{{ articles|length }} of {{ articles|length }} articles.</p>
+{% for article in articles %}
+{% include "website/article_card.html" %}
+{% endfor %}
+{% else %}
+<p>You haven't written any articles. Why not <a href="{% url 'new_article' %}">get started?</a></p>
+{% endif %}
 {% endblock %}

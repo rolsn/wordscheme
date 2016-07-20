@@ -172,7 +172,16 @@ def article_edit(request, urlname):
 
 @login_required
 def articles_list(request):
-    return HttpResponseRedirect(reverse('main'))
+    try:
+        user = User.objects.get(username=request.user)
+        articles = user.articles_written.all().order_by('-date')
+    except:
+        return HttpResponse("Error.")
+
+    return render(request, 'website/articles_list.html', {
+        "articles"  : articles
+        })
+
 
 @login_required
 def new_article(request):
