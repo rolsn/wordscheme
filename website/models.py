@@ -33,6 +33,7 @@ class Articles(models.Model):
     urlname         = models.CharField(max_length=48)
     allowed_users   = models.ManyToManyField(User, related_name='articles_allowed')
     allowed_guilds  = models.ManyToManyField(Guilds, related_name='guilds_allowed')
+    public          = models.BooleanField('Public visibility', default=False)
 
     def __str__(self):
         return "%s %s..." % (self.user_id, self.article_text[:20])
@@ -42,6 +43,8 @@ class Articles(models.Model):
 
     def can_view_article(self, user):
         if user == self.user_id:
+            return True
+        elif self.public == True:
             return True
         elif user in self.allowed_users.all():
             return True

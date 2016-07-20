@@ -153,6 +153,7 @@ def new_article(request):
         if article_form.is_valid():
             article_text = request.POST['article_text']
             subject = request.POST['subject']
+            public = request.POST['public'] if 'public' in request.POST.keys() else False
 
             user = User.objects.get(username=username)
 
@@ -162,6 +163,7 @@ def new_article(request):
                     article_text    = article_text,
                     subject         = subject,
                     urlname         = format_urlname(subject),
+                    public          = public
                     )
 
             return HttpResponseRedirect(reverse('main'))
