@@ -5,7 +5,7 @@
 <a class="return-link" href="{% url 'main' %}">Back</a>
 
 <div class="article">
-    <span class="article-title">{{ article.subject }}</span> by <a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a>
+    <span class="article-title">{{ article.subject }}</span> by <a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a> {% if article.user_id == current_user %}<a href="{% url 'article_edit' article.urlname %}">(edit)</a>{% endif %}
     <div class="article-text">{{ article.article_text|linebreaksbr }}</div>
     <br />
     {% if article.user_id == current_user %}
