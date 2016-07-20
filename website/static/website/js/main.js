@@ -26,8 +26,16 @@ $(".sitenav-tabs li").on('click', function(e) {
 
 $("#user-banner button").on('click', function(e) {
     $(e.currentTarget).toggleClass('following').toggleClass('follow')
-})
+});
 
 $("#article-rating").on('click', function(e) {
     $(e.currentTarget).toggleClass('article-like').toggleClass('article-liked')
-})
+});
+
+$(".article-card[data-owner=true] .article-card-header").on('mouseenter', function(e) {
+    $(this).find('.article-edit-link').show();
+});
+
+$(".article-card[data-owner=true] .article-card-header").on('mouseleave', function(e) {
+    $(this).find('.article-edit-link').hide();
+});

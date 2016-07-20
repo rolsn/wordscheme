@@ -1,8 +1,8 @@
 {% block card %}
 
-<div class="article-card">
+<div class="article-card" data-owner="{% if article.user_id == current_user %}true{% else %}false{% endif %}">
     <div class="article-card-header">
-        <span class="article-card-subject"><a href="{% url 'articles' article.urlname %}">{{ article.subject }}</a></span> by <span class="article-card-author"><a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a></span>
+        <span class="article-card-subject"><a href="{% url 'articles' article.urlname %}">{{ article.subject }}</a></span> by <span class="article-card-author"><a href="{% url 'profiles' article.user_id %}">{{ article.user_id }}</a></span> {% if current_user == article.user_id %}<a class="article-edit-link" href="{% url 'article_edit' article.urlname %}"></a>{% endif %}
         <div class="article-card-date"><p>Authored on {{ article.date }}</p></div>
         <div class="article-card-comments">{% if commentCounts %}{{ commentCounts|lookup:article.id }} comments{% endif %}</div>
     </div>

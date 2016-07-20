@@ -47,6 +47,11 @@ p { font-size: 14px; }
 .article-card-preview { padding: 0.75em; }
 .article-card-subject { font-size: 1.75em; }
 
+.article-edit-link { display: none; }
+.article-edit-link:before {
+    content: '(edit)';
+}
+
 #article-rating {
     float: right;
     margin: 1em;
