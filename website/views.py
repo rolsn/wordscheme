@@ -171,6 +171,10 @@ def article_edit(request, urlname):
 
 
 @login_required
+def articles_list(request):
+    return HttpResponseRedirect(reverse('main'))
+
+@login_required
 def new_article(request):
     username = request.user
 

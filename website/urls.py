@@ -12,6 +12,7 @@ website_views = [
     url(r'register/', views.new_registration, name='register'),
     url(r'login/', views.login, name='login'),
     url(r'main/', views.main, name='main'),
+    url(r'articles/$', views.articles_list, name='articles_list'),
     url(r'articles/(?P<urlname>[a-z0-9_\-]+)/$', views.article, name='articles'),
     url(r'articles/(?P<urlname>[a-z0-9_\-]+)/edit/$', views.article_edit, name='article_edit'),
     url(r'comment/(?P<urlname>[a-z0-9_\-]+)/$', views.new_comment, name='new_comment'),
