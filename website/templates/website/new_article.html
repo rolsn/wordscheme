@@ -4,7 +4,7 @@
 
 <a class="return-link" href="{% url 'main' %}">Cancel</a>
 
-<p>Get those creative juices flowing, {{ username }}.</p>
+<p>Get those creative juices flowing, {{ current_user }}.</p>
 
 <form method="POST">
     {% csrf_token %}

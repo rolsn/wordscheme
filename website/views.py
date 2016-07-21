@@ -188,10 +188,8 @@ def new_article(request):
     username = request.user
 
     if request.method == 'GET':
-        username = request.user
 
         return render(request, 'website/new_article.html', {
-            "username"  : username,
             "form"      : ArticleForm().as_ul(),
             })
 
