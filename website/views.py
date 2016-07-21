@@ -162,7 +162,7 @@ def article_edit(request, urlname):
         if form.is_valid():
             article.subject = request.POST['subject']
             article.article_text = request.POST['article_text']
-            article.public = request.POST['public']
+            article.public = request.POST['public'] if "public" in request.POST.keys() else False
             article.save()
 
             return HttpResponseRedirect(reverse('articles', args=(urlname,)))
